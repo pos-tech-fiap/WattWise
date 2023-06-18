@@ -7,13 +7,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Repository
-public class EletronicsRepository {
+public class ElectronicsRepository {
    private Set<ElectronicsModel> electronicsRepository;
 
-    public EletronicsRepository() { electronicsRepository = new HashSet<>(); }
+    public ElectronicsRepository() { electronicsRepository = new HashSet<>(); }
 
     public ElectronicsModel save(ElectronicsModel electronicsModel){
         electronicsRepository.add(electronicsModel);
         return electronicsModel;
+    }
+
+    public Set<ElectronicsModel> getALl() {
+        return electronicsRepository;
     }
 }
