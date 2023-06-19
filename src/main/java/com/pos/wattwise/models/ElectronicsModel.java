@@ -15,6 +15,11 @@ public class ElectronicsModel {
     private String model;
     @JsonProperty
     private String power;
+
+    public UUID getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -58,4 +63,5 @@ public class ElectronicsModel {
     public boolean findOne(UUID id) {
         return this.id.equals(id);
     }
+
 }

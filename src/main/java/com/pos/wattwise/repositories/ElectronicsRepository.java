@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 @Repository
 public class ElectronicsRepository {
@@ -27,5 +28,14 @@ public class ElectronicsRepository {
         return electronicsRepository.stream()
                 .filter(electronics -> electronics.findOne(id))
                 .findFirst();
+    }
+
+    public boolean removeById(UUID id) {
+        ElectronicsModel electronic = this.findById(id).orElse(null);
+        if(electronic != null){
+            electronicsRepository.remove(electronic);
+            return true;
+        }
+        return false;
     }
 }

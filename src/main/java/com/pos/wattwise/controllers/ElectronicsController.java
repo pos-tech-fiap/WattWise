@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.service.annotation.DeleteExchange;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -43,6 +44,14 @@ public class ElectronicsController {
             return ResponseEntity.badRequest().body("Electronic device not found on this system");
         }
         return ResponseEntity.ok(oneElectronics);
+    }
+    @DeleteMapping("/electronic/{id}")
+    public ResponseEntity delete(@PathVariable(value = "id") UUID id){
+        Boolean removedElectronics = electronicsRepository.removeById(id);
+        if (!removedElectronics) {
+            return ResponseEntity.badRequest().body("Electronic device not found on this system");
+        }
+        return ResponseEntity.ok().body("Electronic device was successful removed");
     }
 
 }
