@@ -27,7 +27,10 @@ public class ElectronicsController {
         BeanUtils.copyProperties(electronicsDTO, electronicsModel);
         return ResponseEntity.status(HttpStatus.CREATED).body(electronicsRepository.save(electronicsModel));
     }
-
+    @PutMapping("/electronic/{id}")
+    public ResponseEntity<ElectronicsModel> update(@PathVariable(value = "id") UUID id, @RequestBody @Valid ElectronicsDTO electronicsDTO){
+        return ResponseEntity.status(HttpStatus.OK).body(electronicsRepository.update(electronicsDTO, id));
+    }
     @GetMapping("/electronic")
     public ResponseEntity<Set<ElectronicsModel>> getAll(){
         Set<ElectronicsModel> allElectronics = electronicsRepository.findAll();

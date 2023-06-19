@@ -13,4 +13,19 @@ public record ElectronicsDTO(
     @JsonProperty
     @NotBlank(message = "Power field is required!")
     String power
-){}
+){
+    @Override
+    public String name() {
+        return name;
+    }
+
+    @Override
+    public String model() {
+        return model;
+    }
+
+    @Override
+    public String power() {
+        return power;
+    }
+}

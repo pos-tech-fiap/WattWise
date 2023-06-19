@@ -1,5 +1,6 @@
 package com.pos.wattwise.repositories;
 
+import com.pos.wattwise.dtos.ElectronicsDTO;
 import com.pos.wattwise.models.ElectronicsModel;
 import org.springframework.stereotype.Repository;
 
@@ -37,5 +38,15 @@ public class ElectronicsRepository {
             return true;
         }
         return false;
+    }
+
+    public ElectronicsModel update(ElectronicsDTO electronicsDTO, UUID id) {
+        ElectronicsModel electronic = this.findById(id).orElse(null);
+
+        electronic.setName(electronicsDTO.name());
+        electronic.setModel(electronicsDTO.model());
+        electronic.setPower(electronicsDTO.power());
+
+        return electronic;
     }
 }
