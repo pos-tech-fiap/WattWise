@@ -2,10 +2,11 @@ package com.pos.wattwise.models;
 
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class Address {
 
-    private Long id;
+    private UUID id;
     private String street;
     private Integer number;
     private String complement;
@@ -17,7 +18,7 @@ public class Address {
     public Address() {
     }
 
-    public Address(Long id, String street, String city, Integer zipCode, String state, Integer number, String complement, String neighborhood) {
+    public Address(UUID id, String street, String city, Integer zipCode, String state, Integer number, String complement, String neighborhood) {
         this.id = id;
         this.street = street;
         this.city = city;
@@ -28,11 +29,11 @@ public class Address {
         this.neighborhood = neighborhood;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public Address setId(Long id) {
+    public Address setId(UUID id) {
         this.id = id;
         return this;
     }
