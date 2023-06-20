@@ -6,7 +6,10 @@ import java.util.Objects;
 public class Address {
 
     private Long id;
-    private String address;
+    private String street;
+    private Integer number;
+    private String complement;
+    private String neighborhood;
     private String city;
     private String state;
     private Integer zipCode;
@@ -14,12 +17,15 @@ public class Address {
     public Address() {
     }
 
-    public Address(Long id, String address, String city, Integer zipCode, String state) {
+    public Address(Long id, String street, String city, Integer zipCode, String state, Integer number, String complement, String neighborhood) {
         this.id = id;
-        this.address = address;
+        this.street = street;
         this.city = city;
         this.zipCode = zipCode;
         this.state = state;
+        this.number = number;
+        this.complement = complement;
+        this.neighborhood = neighborhood;
     }
 
     public Long getId() {
@@ -31,12 +37,12 @@ public class Address {
         return this;
     }
 
-    public String getAddress() {
-        return address;
+    public String getStreet() {
+        return street;
     }
 
-    public Address setAddress(String address) {
-        this.address = address;
+    public Address setStreet(String street) {
+        this.street = street;
         return this;
     }
 
@@ -64,6 +70,33 @@ public class Address {
 
     public Address setState(String state) {
         this.state = state;
+        return this;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public Address setNumber(Integer number) {
+        this.number = number;
+        return this;
+    }
+
+    public String getComplement() {
+        return complement;
+    }
+
+    public Address setComplement(String complement) {
+        this.complement = complement;
+        return this;
+    }
+
+    public String getNeighborhood() {
+        return neighborhood;
+    }
+
+    public Address setNeighborhood(String neighborhood) {
+        this.neighborhood = neighborhood;
         return this;
     }
 
