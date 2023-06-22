@@ -8,27 +8,28 @@ import java.util.*;
 @Repository
 public class AddressRepository {
 
-    private Set<Address> addressRepository;
+    private Set<Address> addressesRepository;
 
     public AddressRepository() {
-        addressRepository = new LinkedHashSet<>();
+        addressesRepository = new LinkedHashSet<>();
     }
 
     public Set<Address> findAll() {
-        return addressRepository;
+        return addressesRepository;
     }
 
     public Address findById(UUID id) {
-        return  addressRepository.stream().filter(a -> a.getId().equals(id)).findFirst().get();
+        return  addressesRepository.stream().filter(a -> a.getId().equals(id)).findFirst().get();
     }
 
     public Address save(Address address) {
-        addressRepository.add(address);
+        address.setId(UUID.randomUUID());
+        addressesRepository.add(address);
         return address;
     }
 
     public Address update(UUID id, Address address) {
-        Address updatedAddress = addressRepository.stream().filter(a -> a.getId().equals(id)).findFirst().get();
+        Address updatedAddress = addressesRepository.stream().filter(a -> a.getId().equals(id)).findFirst().get();
         updatedAddress.setStreet(address.getStreet());
         updatedAddress.setNumber(address.getNumber());
         updatedAddress.setComplement(address.getComplement());
@@ -38,5 +39,10 @@ public class AddressRepository {
         updatedAddress.setZipCode(address.getZipCode());
 
         return updatedAddress;
+    }
+
+    public void delete(UUID id) {
+        Address address = addressesRepository.stream().filter(a -> a.getId().equals(id)).findFirst().get();
+        addressesRepository.remove(address);
     }
 }
