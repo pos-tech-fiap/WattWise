@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Objects;
 import java.util.UUID;
 public class ElectronicsModel {
-
     @JsonProperty
     private UUID id;
     @JsonProperty
@@ -42,6 +41,10 @@ public class ElectronicsModel {
 
     public void setPower(String power) {
         this.power = power;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     @Override

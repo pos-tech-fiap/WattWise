@@ -2,6 +2,7 @@ package com.pos.wattwise.repositories;
 
 import com.pos.wattwise.dtos.ElectronicsDTO;
 import com.pos.wattwise.models.ElectronicsModel;
+import com.pos.wattwise.repositories.exception.RepositoryException;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashSet;
@@ -17,36 +18,55 @@ public class ElectronicsRepository {
     public ElectronicsRepository() { electronicsRepository = new HashSet<>(); }
 
     public ElectronicsModel save(ElectronicsModel electronicsModel){
-        electronicsRepository.add(electronicsModel);
-        return electronicsModel;
+        try {
+            electronicsRepository.add(electronicsModel);
+            return electronicsModel;
+        } catch (Exception e) {
+            throw new RepositoryException("Failed to save data !");
+        }
     }
 
     public Set<ElectronicsModel> findAll() {
-        return electronicsRepository;
+        try{
+            return electronicsRepository;
+        } catch (Exception e) {
+            throw new RepositoryException("Failed to get all data !");
+        }
     }
 
     public Optional<ElectronicsModel> findById(UUID id) {
-        return electronicsRepository.stream()
-                .filter(electronics -> electronics.findOne(id))
-                .findFirst();
+        try{
+            return electronicsRepository.stream()
+                    .filter(electronics -> electronics.findOne(id))
+                    .findFirst();
+        } catch (Exception e) {
+            throw new RepositoryException("Failed to get data by id!");
+        }
     }
 
     public boolean removeById(UUID id) {
-        ElectronicsModel electronic = this.findById(id).orElse(null);
-        if(electronic != null){
-            electronicsRepository.remove(electronic);
-            return true;
+        try{
+            ElectronicsModel electronic = this.findById(id).orElse(null);
+            if(electronic != null){
+                electronicsRepository.remove(electronic);
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            throw new RepositoryException("Failed to update data !");
         }
-        return false;
     }
 
     public ElectronicsModel update(ElectronicsDTO electronicsDTO, UUID id) {
-        ElectronicsModel electronic = this.findById(id).orElse(null);
+        try {
+            ElectronicsModel electronic = this.findById(id).orElse(null);
+            electronic.setName(electronicsDTO.name());
+            electronic.setModel(electronicsDTO.model());
+            electronic.setPower(electronicsDTO.power());
 
-        electronic.setName(electronicsDTO.name());
-        electronic.setModel(electronicsDTO.model());
-        electronic.setPower(electronicsDTO.power());
-
-        return electronic;
+            return electronic;
+        } catch (Exception e) {
+            throw new RepositoryException("Failed to save data !");
+        }
     }
 }

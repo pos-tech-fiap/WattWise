@@ -28,4 +28,5 @@ public record ElectronicsDTO(
     public String power() {
         return power;
     }
+
 }

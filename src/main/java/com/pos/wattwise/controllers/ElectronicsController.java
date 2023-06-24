@@ -3,6 +3,7 @@ package com.pos.wattwise.controllers;
 import com.pos.wattwise.dtos.ElectronicsDTO;
 import com.pos.wattwise.models.ElectronicsModel;
 import com.pos.wattwise.repositories.ElectronicsRepository;
+import com.pos.wattwise.services.ElectronicsService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,21 +20,20 @@ import java.util.UUID;
 @RestController
 public class ElectronicsController {
     @Autowired
-    ElectronicsRepository electronicsRepository;
+    ElectronicsService electronicsService;
 
     @PostMapping("/electronic")
     public ResponseEntity<ElectronicsModel> create(@RequestBody @Valid ElectronicsDTO electronicsDTO){
-        var electronicsModel = new ElectronicsModel();
-        BeanUtils.copyProperties(electronicsDTO, electronicsModel);
-        return ResponseEntity.status(HttpStatus.CREATED).body(electronicsRepository.save(electronicsModel));
+        var response = electronicsService.save(electronicsDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
     @PutMapping("/electronic/{id}")
     public ResponseEntity<ElectronicsModel> update(@PathVariable(value = "id") UUID id, @RequestBody @Valid ElectronicsDTO electronicsDTO){
-        return ResponseEntity.status(HttpStatus.OK).body(electronicsRepository.update(electronicsDTO, id));
+        return ResponseEntity.status(HttpStatus.OK).body(electronicsService.update(electronicsDTO, id));
     }
     @GetMapping("/electronic")
     public ResponseEntity<Set<ElectronicsModel>> getAll(){
-        Set<ElectronicsModel> allElectronics = electronicsRepository.findAll();
+        Set<ElectronicsModel> allElectronics = (Set<ElectronicsModel>) electronicsService.findAll();
         if (allElectronics.isEmpty()) {
             return ResponseEntity.badRequest().body(new HashSet<>());
         }
@@ -42,7 +42,7 @@ public class ElectronicsController {
     }
     @GetMapping("/electronic/{id}")
     public ResponseEntity getById(@PathVariable(value = "id") UUID id){
-        Optional<ElectronicsModel> oneElectronics = electronicsRepository.findById(id);
+        Optional<ElectronicsModel> oneElectronics = electronicsService.findById(id);
         if (oneElectronics.isEmpty()) {
             return ResponseEntity.badRequest().body("Electronic device not found on this system");
         }
@@ -50,7 +50,7 @@ public class ElectronicsController {
     }
     @DeleteMapping("/electronic/{id}")
     public ResponseEntity delete(@PathVariable(value = "id") UUID id){
-        Boolean removedElectronics = electronicsRepository.removeById(id);
+        Boolean removedElectronics = electronicsService.removeById(id);
         if (!removedElectronics) {
             return ResponseEntity.badRequest().body("Electronic device not found on this system");
         }
