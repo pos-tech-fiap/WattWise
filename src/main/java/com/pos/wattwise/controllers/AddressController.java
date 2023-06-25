@@ -3,6 +3,7 @@ package com.pos.wattwise.controllers;
 import com.pos.wattwise.dtos.AddressDTO;
 import com.pos.wattwise.models.Address;
 import com.pos.wattwise.repositories.AddressRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ public class AddressController {
     }
 
     @PostMapping
-    public ResponseEntity<Address> save(@RequestBody AddressDTO addressDTO) {
+    public ResponseEntity<Address> save(@RequestBody @Valid AddressDTO addressDTO) {
         var address = new Address();
         BeanUtils.copyProperties(addressDTO, address);
         return ResponseEntity.status(HttpStatus.CREATED).body(addressRepository.save(address));
@@ -37,7 +38,7 @@ public class AddressController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Address> update(@PathVariable UUID id, @RequestBody AddressDTO addressDTO) {
+    public ResponseEntity<Address> update(@PathVariable UUID id, @RequestBody @Valid AddressDTO addressDTO) {
         var address = new Address();
         BeanUtils.copyProperties(addressDTO, address);
         return ResponseEntity.ok().body(addressRepository.update(id, address));
