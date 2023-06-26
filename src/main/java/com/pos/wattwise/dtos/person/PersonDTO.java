@@ -6,7 +6,7 @@ import com.pos.wattwise.models.person.Kinship;
 
 import java.util.Date;
 
-public class CreatePersonDTO {
+public class PersonDTO {
 
     @JsonProperty
     private String name;

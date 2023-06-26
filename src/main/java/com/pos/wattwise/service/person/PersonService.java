@@ -1,6 +1,6 @@
 package com.pos.wattwise.service.person;
 
-import com.pos.wattwise.dtos.person.CreatePersonDTO;
+import com.pos.wattwise.dtos.person.PersonDTO;
 import com.pos.wattwise.models.person.Person;
 import com.pos.wattwise.repositories.PersonRepository;
 
@@ -20,7 +20,7 @@ public class PersonService {
     @Autowired
     private PersonRepository personRepository;
 
-    public Person create(CreatePersonDTO createPersonDTO) {
+    public Person create(PersonDTO createPersonDTO) {
         Person person = new Person();
         BeanUtils.copyProperties(createPersonDTO, person);
 
