@@ -18,8 +18,8 @@ public class AddressRepository {
         return addressesRepository;
     }
 
-    public Address findById(UUID id) {
-        return  addressesRepository.stream().filter(a -> a.getId().equals(id)).findFirst().get();
+    public Optional<Address> findById(UUID id) {
+        return  addressesRepository.stream().filter(a -> a.getId().equals(id)).findFirst();
     }
 
     public Address save(Address address) {

@@ -2,9 +2,11 @@ package com.pos.wattwise.services;
 
 import com.pos.wattwise.models.Address;
 import com.pos.wattwise.repositories.AddressRepository;
+import com.pos.wattwise.services.exceptions.ControllerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.UUID;
 
@@ -24,14 +26,22 @@ public class AddressService {
     }
 
     public Address findById(UUID id) {
-        return addressRepository.findById(id);
+        return addressRepository.findById(id).orElseThrow(() -> new ControllerNotFoundException("Address not found"));
     }
 
     public Address update(UUID id, Address address) {
-        return addressRepository.update(id, address);
+        try {
+            return addressRepository.update(id, address);
+        } catch (NoSuchElementException e) {
+            throw new ControllerNotFoundException("Address not found, id: " + id);
+        }
     }
 
     public void delete(UUID id) {
-        addressRepository.delete(id);
+        try {
+            addressRepository.delete(id);
+        } catch (NoSuchElementException e) {
+            throw new ControllerNotFoundException("Address not found, id: " + id);
+        }
     }
 }
