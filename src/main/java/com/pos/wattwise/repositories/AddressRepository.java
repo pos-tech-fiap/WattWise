@@ -23,7 +23,6 @@ public class AddressRepository {
     }
 
     public Address save(Address address) {
-        address.setId(UUID.randomUUID());
         addressesRepository.add(address);
         return address;
     }
