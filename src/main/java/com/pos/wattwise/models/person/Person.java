@@ -79,5 +79,6 @@ public class Person {
     }
 
     public Person() {
+        this.setId(UUID.randomUUID());
     }
 }
