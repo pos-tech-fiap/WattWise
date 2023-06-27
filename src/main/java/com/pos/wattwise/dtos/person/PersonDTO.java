@@ -4,20 +4,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import com.pos.wattwise.models.person.Kinship;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 import java.util.Date;
 
 public class PersonDTO {
 
     @JsonProperty
+    @NotNull
+    @NotEmpty
     private String name;
 
     @JsonProperty
     private String gender;
 
     @JsonProperty
+    @NotNull
     private Date birthDate;
 
     @JsonProperty
+    @Email
     private String email;
 
     @JsonProperty

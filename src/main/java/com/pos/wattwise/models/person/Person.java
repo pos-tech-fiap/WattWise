@@ -1,7 +1,5 @@
 package com.pos.wattwise.models.person;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
@@ -12,15 +10,12 @@ public class Person {
     @NotNull
     private UUID id;
 
-    @NotNull
-    @NotEmpty
     private String name;
 
     private String gender;
 
     private Date birthDate;
 
-    @Email
     private String email;
 
     private Number phone;
