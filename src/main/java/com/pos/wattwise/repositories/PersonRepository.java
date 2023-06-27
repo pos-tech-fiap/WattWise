@@ -41,6 +41,19 @@ public class PersonRepository {
         }
     }
 
+    public boolean delete(UUID id) {
+        try{
+            Person person = this.findById(id).orElse(null);
+            if (person != null) {
+                personRepository.remove(person);
+                return true;
+            }
+            return false;
+        } catch (Exception exception) {
+            throw new RepositoryException("Erro ao remover pessoa", exception);
+        }
+    }
+
     public Optional<Person> findById(UUID id) {
         try{
             return personRepository.stream()

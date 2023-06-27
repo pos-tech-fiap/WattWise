@@ -42,9 +42,18 @@ public class PersonController {
         return ResponseEntity.ok(person);
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Person> update(@PathVariable(value = "id") UUID id, @RequestBody @Valid PersonDTO createPersonDTO) {
         Person person = personService.update(id, createPersonDTO);
         return ResponseEntity.ok(person);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable(value = "id") UUID id){
+        boolean deleted = personService.delete(id);
+        if (!deleted) {
+            return ResponseEntity.badRequest().body("Pessoa não encontrada");
+        }
+        return ResponseEntity.ok().body("Pessoa removida com sucesso");
     }
 }

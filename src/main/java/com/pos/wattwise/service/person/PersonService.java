@@ -41,6 +41,10 @@ public class PersonService {
         return personRepository.update(id, personDto);
     }
 
+    public boolean delete(UUID id) {
+        return personRepository.delete(id);
+    }
+
     private void validateCreate(Person person) {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
