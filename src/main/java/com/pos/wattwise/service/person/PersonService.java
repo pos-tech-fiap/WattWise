@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -20,6 +21,10 @@ public class PersonService {
 
     @Autowired
     private PersonRepository personRepository;
+
+    public Optional<Person> findById(UUID id) {
+        return personRepository.findById(id);
+    }
 
     public Person create(PersonDTO createPersonDTO) {
         Person person = new Person();

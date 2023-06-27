@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -18,6 +19,15 @@ public class PersonController {
 
     @Autowired
     PersonService personService;
+
+    @GetMapping("/{id}")
+    public ResponseEntity getById(@PathVariable(value = "id") UUID id){
+        Optional<Person> person = personService.findById(id);
+        if (person.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(person);
+    }
 
     @PostMapping
     public ResponseEntity<Person> create(@RequestBody @Valid PersonDTO createPersonDTO) {
