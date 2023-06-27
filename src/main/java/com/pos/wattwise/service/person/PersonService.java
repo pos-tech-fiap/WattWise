@@ -44,16 +44,4 @@ public class PersonService {
     public boolean delete(UUID id) {
         return personRepository.delete(id);
     }
-
-    private void validateCreate(Person person) {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        Validator validator = factory.getValidator();
-
-        Set<ConstraintViolation<Person>> violationSet = validator.validate(person);
-        Map<Path, String> violationMap = violationSet.stream().collect(Collectors.toMap(ConstraintViolation::getPropertyPath, ConstraintViolation::getMessage));
-
-        if (!violationMap.isEmpty()) {
-            throw new ValidationException("error");
-        }
-    }
 }
