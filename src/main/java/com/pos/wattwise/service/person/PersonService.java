@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,6 +26,10 @@ public class PersonService {
         BeanUtils.copyProperties(createPersonDTO, person);
 
         return personRepository.save(person);
+    }
+
+    public Person update(UUID id, PersonDTO personDto) {
+        return personRepository.update(id, personDto);
     }
 
     private void validateCreate(Person person) {
