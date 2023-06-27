@@ -26,6 +26,10 @@ public class PersonService {
         return personRepository.findById(id);
     }
 
+    public Set<Person> findAll() {
+        return personRepository.findAll();
+    }
+
     public Person create(PersonDTO createPersonDTO) {
         Person person = new Person();
         BeanUtils.copyProperties(createPersonDTO, person);

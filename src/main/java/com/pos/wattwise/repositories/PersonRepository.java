@@ -50,4 +50,12 @@ public class PersonRepository {
             throw new RepositoryException("Erro ao buscar pessoa por id", exception);
         }
     }
+
+    public Set<Person> findAll() {
+        try{
+            return personRepository;
+        } catch (Exception exception) {
+            throw new RepositoryException("Erro ao buscar todas as pessoas", exception);
+        }
+    }
 }
