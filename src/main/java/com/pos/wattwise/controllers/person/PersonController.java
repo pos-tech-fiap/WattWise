@@ -1,8 +1,8 @@
-package com.pos.wattwise.controller;
+package com.pos.wattwise.controllers.person;
 
 import com.pos.wattwise.dtos.person.PersonDTO;
 import com.pos.wattwise.models.person.Person;
-import com.pos.wattwise.service.person.PersonService;
+import com.pos.wattwise.services.person.PersonService;
 
 import jakarta.validation.Valid;
 

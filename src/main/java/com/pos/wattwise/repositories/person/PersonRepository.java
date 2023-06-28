@@ -1,4 +1,4 @@
-package com.pos.wattwise.repositories;
+package com.pos.wattwise.repositories.person;
 
 import com.pos.wattwise.dtos.person.PersonDTO;
 import com.pos.wattwise.models.person.Person;

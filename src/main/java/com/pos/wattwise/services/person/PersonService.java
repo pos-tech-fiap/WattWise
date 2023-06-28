@@ -1,20 +1,16 @@
-package com.pos.wattwise.service.person;
+package com.pos.wattwise.services.person;
 
 import com.pos.wattwise.dtos.person.PersonDTO;
 import com.pos.wattwise.models.person.Person;
-import com.pos.wattwise.repositories.PersonRepository;
-
-import jakarta.validation.*;
+import com.pos.wattwise.repositories.person.PersonRepository;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 public class PersonService {
