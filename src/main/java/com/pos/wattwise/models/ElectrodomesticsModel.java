@@ -6,25 +6,68 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Objects;
 import java.util.UUID;
 
-@EqualsAndHashCode(of = {"name"})
 public class ElectrodomesticsModel {
 
     @JsonProperty
     UUID id;
-    @Getter
-    @Setter
+
     @JsonProperty
     private String name;
-    @Getter
-    @Setter
+
     @JsonProperty
     private String type;
-    @Getter
-    @Setter
+
     @JsonProperty
     private String power;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ElectrodomesticsModel that)) return false;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getPower() {
+        return power;
+    }
+
+    public void setPower(String power) {
+        this.power = power;
+    }
 
     public ElectrodomesticsModel() {
         this.id = UUID.randomUUID();

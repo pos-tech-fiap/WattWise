@@ -6,13 +6,11 @@ import com.pos.wattwise.repositories.ElectrodomesticsRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 @RestController
@@ -20,15 +18,28 @@ import java.util.UUID;
 public class ElectrodomesticsController {
 
     @Autowired
-    private ElectrodomesticsRepository electrodomesticsRepository;
+    ElectrodomesticsRepository electrodomesticsRepository;
 
 
     @PostMapping
     public ResponseEntity<ElectrodomesticsModel> saveProduct (@RequestBody @Valid ElectrodomesticsDTO electrodomesticsDTO){
         var electrodomestics = new ElectrodomesticsModel();
         BeanUtils.copyProperties(electrodomesticsDTO, electrodomestics);
-        electrodomesticsRepository.save(electrodomestics);
-        return ResponseEntity.status(HttpStatus.CREATED).body(electrodomestics);
+        ElectrodomesticsModel saved = electrodomesticsRepository.save(electrodomestics);
+        return ResponseEntity.ok(saved);
     }
 
+    @GetMapping
+    public ResponseEntity <Set<ElectrodomesticsModel>> getAllElectrodomestics(){
+        var electrodomestics = electrodomesticsRepository.findAll();
+
+        return ResponseEntity.ok(electrodomestics);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<ElectrodomesticsModel>> getById(@RequestBody @Valid @PathVariable UUID id){
+        var electrodomestics = electrodomesticsRepository.findById(id);
+        return ResponseEntity.ok(electrodomestics);
+
+    }
 }
