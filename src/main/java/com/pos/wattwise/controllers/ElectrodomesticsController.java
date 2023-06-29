@@ -42,4 +42,16 @@ public class ElectrodomesticsController {
         return ResponseEntity.ok(electrodomestics);
 
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Optional<ElectrodomesticsModel>> update(@PathVariable UUID id,
+                                                                  @RequestBody @Valid ElectrodomesticsDTO eletrodomesticsDTO){
+        Optional<ElectrodomesticsModel> electrodomestics0 = electrodomesticsRepository.findById(id);
+        var eletrodomestics = electrodomestics0.get();
+        BeanUtils.copyProperties(eletrodomesticsDTO, eletrodomestics);
+        return ResponseEntity.ok().body(Optional.ofNullable(electrodomesticsRepository.save(eletrodomestics)));
+
+    }
+
+
 }
