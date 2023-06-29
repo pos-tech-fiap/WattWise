@@ -2,9 +2,11 @@ package com.pos.wattwise.repositories;
 
 import com.pos.wattwise.models.ElectrodomesticsModel;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
 
 @Repository
 public class ElectrodomesticsRepository  {

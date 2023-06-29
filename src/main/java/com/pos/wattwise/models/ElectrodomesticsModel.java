@@ -2,12 +2,7 @@ package com.pos.wattwise.models;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.Objects;
 import java.util.UUID;
 
