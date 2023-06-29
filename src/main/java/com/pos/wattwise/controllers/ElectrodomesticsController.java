@@ -32,7 +32,6 @@ public class ElectrodomesticsController {
     @GetMapping
     public ResponseEntity <Set<ElectrodomesticsModel>> getAllElectrodomestics(){
         var electrodomestics = electrodomesticsRepository.findAll();
-
         return ResponseEntity.ok(electrodomestics);
     }
 
@@ -50,8 +49,11 @@ public class ElectrodomesticsController {
         var eletrodomestics = electrodomestics0.get();
         BeanUtils.copyProperties(eletrodomesticsDTO, eletrodomestics);
         return ResponseEntity.ok().body(Optional.ofNullable(electrodomesticsRepository.save(eletrodomestics)));
-
     }
 
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable UUID id){
+        electrodomesticsRepository.delete(id);
+        return ResponseEntity.ok().body("Electrodomestic sucessfully deleted!");
+    }
 }

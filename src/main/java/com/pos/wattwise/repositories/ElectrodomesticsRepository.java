@@ -24,4 +24,8 @@ public class ElectrodomesticsRepository  {
     public Optional<ElectrodomesticsModel> findById(UUID id) {
         return electrodomesticsList.stream().filter(e -> e.getId().equals(id)).findFirst();
     }
+
+    public void delete(UUID id) {
+        electrodomesticsList.removeIf(e -> e.getId().equals(id));
+    }
 }
