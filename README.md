@@ -13,33 +13,31 @@ Permite ao usuário gerenciar os dados de endereços do sistema WattWise.
     * Busca todos as endereços cadastradas
 * **POST** `/addresses`
     * Cria um novo endereço
-    * Aceita um JSON com as seguintes informações.
-    * Os campos com * são **obrigatórios**.
+    * Aceita um JSON com as seguintes informações:
     * ```json
       {
-      "street"*: "string", 
-      "number"*: Integer,
+      "street": "string", //OBRIGATÓRIO 
+      "number": Integer, //OBRIGATÓRIO
       "complement": "string",
       "neighborhood": "string",
-      "city"*: "string"
-      "state"*: "string"
-      "zipcode"*: Integer
+      "city": "string", //OBRIGATÓRIO
+      "state": "string", //OBRIGATÓRIO
+      "zipcode": Integer //OBRIGATÓRIO
       }
       ```
 
 * **PUT** `/addresses/{id}`
     * Edita um endereço
-    * Aceita um JSON com as seguintes informações.
-    * Os campos com * são **obrigatórios**.
+    * Aceita um JSON com as seguintes informações:
   * ```json
       {
-      "street"*: "string", 
-      "number"*: Integer,
-      "complement": "string",
-      "neighborhood": "string",
-      "city"*: "string"
-      "state"*: "string"
-      "zipcode"*: Integer
+      "street": "string", //OBRIGATÓRIO
+      "number": Integer, //OBRIGATÓRIO
+      "complement": "string", 
+      "neighborhood": "string", 
+      "city": "string", //OBRIGATÓRIO
+      "state": "string", //OBRIGATÓRIO
+      "zipcode": Integer //OBRIGATÓRIO
       }
       ```
 * **DELETE** `/addresses/{id}`
