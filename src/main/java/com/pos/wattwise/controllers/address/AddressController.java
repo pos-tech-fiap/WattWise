@@ -1,10 +1,8 @@
 package com.pos.wattwise.controllers.address;
 
 import com.pos.wattwise.dtos.address.AddressDTO;
-import com.pos.wattwise.models.address.Address;
 import com.pos.wattwise.services.address.AddressService;
 import jakarta.validation.Valid;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,27 +19,23 @@ public class AddressController {
     private AddressService addressService;
 
     @GetMapping
-    public ResponseEntity<Set<Address>> findAll() {
+    public ResponseEntity<Set<AddressDTO>> findAll() {
         return ResponseEntity.ok().body(addressService.findAll());
     }
 
     @PostMapping
-    public ResponseEntity<Address> save(@RequestBody @Valid AddressDTO addressDTO) {
-        var address = new Address();
-        BeanUtils.copyProperties(addressDTO, address);
-        return ResponseEntity.status(HttpStatus.CREATED).body(addressService.save(address));
+    public ResponseEntity<AddressDTO> save(@RequestBody @Valid AddressDTO addressDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(addressService.save(addressDTO));
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Address> findById(@PathVariable UUID id) {
+    public ResponseEntity<AddressDTO> findById(@PathVariable UUID id) {
         return ResponseEntity.ok().body(addressService.findById(id));
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Address> update(@PathVariable UUID id, @RequestBody @Valid AddressDTO addressDTO) {
-        var address = new Address();
-        BeanUtils.copyProperties(addressDTO, address);
-        return ResponseEntity.ok().body(addressService.update(id, address));
+    public ResponseEntity<AddressDTO> update(@PathVariable UUID id, @RequestBody @Valid AddressDTO addressDTO) {
+        return ResponseEntity.ok().body(addressService.update(id, addressDTO));
     }
 
     @DeleteMapping(value = "/{id}")
