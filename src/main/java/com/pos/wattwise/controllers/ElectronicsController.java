@@ -2,15 +2,12 @@ package com.pos.wattwise.controllers;
 
 import com.pos.wattwise.dtos.ElectronicsDTO;
 import com.pos.wattwise.models.ElectronicsModel;
-import com.pos.wattwise.repositories.ElectronicsRepository;
 import com.pos.wattwise.services.ElectronicsService;
 import jakarta.validation.Valid;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.service.annotation.DeleteExchange;
 
 import java.util.HashSet;
 import java.util.Optional;
