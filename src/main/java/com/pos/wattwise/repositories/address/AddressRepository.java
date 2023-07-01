@@ -1,6 +1,6 @@
-package com.pos.wattwise.repositories;
+package com.pos.wattwise.repositories.address;
 
-import com.pos.wattwise.models.Address;
+import com.pos.wattwise.models.address.Address;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;

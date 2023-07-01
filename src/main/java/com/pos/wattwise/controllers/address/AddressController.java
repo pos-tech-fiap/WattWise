@@ -1,9 +1,8 @@
-package com.pos.wattwise.controllers;
+package com.pos.wattwise.controllers.address;
 
-import com.pos.wattwise.dtos.AddressDTO;
-import com.pos.wattwise.models.Address;
-import com.pos.wattwise.repositories.AddressRepository;
-import com.pos.wattwise.services.AddressService;
+import com.pos.wattwise.dtos.address.AddressDTO;
+import com.pos.wattwise.models.address.Address;
+import com.pos.wattwise.services.address.AddressService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

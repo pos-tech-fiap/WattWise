@@ -1,4 +1,4 @@
-package com.pos.wattwise.models;
+package com.pos.wattwise.models.address;
 
 
 import java.util.Objects;

@@ -1,4 +1,4 @@
-package com.pos.wattwise.dtos;
+package com.pos.wattwise.dtos.address;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
