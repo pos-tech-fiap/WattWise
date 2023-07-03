@@ -1,6 +1,6 @@
 package com.pos.wattwise.controllers.electronics.exception;
 
-import com.pos.wattwise.repositories.person.exception.RepositoryException;
+import com.pos.wattwise.repositories.exception.RepositoryException;
 import com.pos.wattwise.services.electronics.exception.DefaultError;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;

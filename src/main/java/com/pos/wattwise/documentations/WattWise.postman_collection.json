@@ -1,0 +1,629 @@
+{
+	"info": {
+		"_postman_id": "92873c6e-bc12-495a-8086-25ad50e08d50",
+		"name": "WattWise",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14838966"
+	},
+	"item": [
+		{
+			"name": "Electronics",
+			"item": [
+				{
+					"name": "Criar Equipamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"TV - Tela plana 55'\",\n    \"model\": \"LG\",\n    \"power\": \"120W\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/electronic",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"electronic"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Criar Equipamento",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"TV - Tela plana 55'\",\n    \"model\": \"LG\",\n    \"power\": \"120W\"\n}\n//Todos os campos acima são obrigatórios",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/electronic",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"electronic"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": \"b23cdb76-ca87-449e-9a88-d37fa05b1ffc\",\n    \"name\": \"TV - Tela plana 55'\",\n    \"model\": \"LG\",\n    \"power\": \"120W\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Buscar todos os equipamentos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/electronic",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"electronic"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Buscar todos os equipamentos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/electronic",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"electronic"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"33fff6a0-a972-462a-807e-fdb4d8a2155c\",\n        \"name\": \"TV - Tela plana 55'\",\n        \"model\": \"LG\",\n        \"power\": \"120W\"\n    },\n    {\n        \"id\": \"b23cdb76-ca87-449e-9a88-d37fa05b1ffc\",\n        \"name\": \"TV - Tela plana 55'\",\n        \"model\": \"LG\",\n        \"power\": \"120W\"\n    },\n    {\n        \"id\": \"5b7d5d8d-3954-4bf8-b167-5de74e364989\",\n        \"name\": \"TV - Tela plana 55'\",\n        \"model\": \"LG\",\n        \"power\": \"120W\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Buscar um equipamento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/electronic/5b7d5d8d-3954-4bf8-b167-5de74e364989",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"electronic",
+								"5b7d5d8d-3954-4bf8-b167-5de74e364989"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Buscar um equipamento",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/electronic/f02afcb0-bc19-4854-b437-3843ff33716a",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"electronic",
+										"f02afcb0-bc19-4854-b437-3843ff33716a"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": \"5b7d5d8d-3954-4bf8-b167-5de74e364989\",\n    \"name\": \"TV - Tela plana 55'\",\n    \"model\": \"LG\",\n    \"power\": \"120W\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Atualizar dados de equipamanto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"TV - Tela plana 10'\",\n    \"model\": \"Samsung\",\n    \"power\": \"110W\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/electronic/5b7d5d8d-3954-4bf8-b167-5de74e364989",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"electronic",
+								"5b7d5d8d-3954-4bf8-b167-5de74e364989"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Atualizar dados de equipamanto",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"TV - Tela plana 10'\",\n    \"model\": \"Samsung\",\n    \"power\": \"110W\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/electronic/4ea6fb0e-bec1-4dff-b186-5b20e57c40a4",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"electronic",
+										"4ea6fb0e-bec1-4dff-b186-5b20e57c40a4"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": \"5b7d5d8d-3954-4bf8-b167-5de74e364989\",\n    \"name\": \"TV - Tela plana 10'\",\n    \"model\": \"Samsung\",\n    \"power\": \"110W\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Remover equipamento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/electronic/5b7d5d8d-3954-4bf8-b167-5de74e364989",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"electronic",
+								"5b7d5d8d-3954-4bf8-b167-5de74e364989"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Remover equipamento",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/electronic/5b7d5d8d-3954-4bf8-b167-5de74e364989",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"electronic",
+										"5b7d5d8d-3954-4bf8-b167-5de74e364989"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "Electronic device was successful removed"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Persons",
+			"item": [
+				{
+					"name": "Criar cadastro de pessoa",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"José Antônio\", //OBRIGATÓRIO\n    \"brithDate\" : \"2021-07-01\",//OBRIGATÓRIO\n    \"email\" : \"configuracao@ww.com\" ,//OBRIGATÓRIO\n    \"gender\" : \"masculino\",\n    \"phone\" : 11998982121,    \n    \"kinship\" : \"FRIEND\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/person",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar todos as pessoas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/person",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar uma pessoa",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/person/f02afcb0-bc19-4854-b437-3843ff33716a",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"person",
+								"f02afcb0-bc19-4854-b437-3843ff33716a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar dados de uma pessoa",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"José Antônio\", //OBRIGATÓRIO\n    \"brithDate\" : \"2021-07-01\",//OBRIGATÓRIO\n    \"email\" : \"configuracao@ww.com\" ,//OBRIGATÓRIO\n    \"gender\" : \"masculino\",\n    \"phone\" : 11998982121,    \n    \"kinship\" : \"FRIEND\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/person/4ea6fb0e-bec1-4dff-b186-5b20e57c40a4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"person",
+								"4ea6fb0e-bec1-4dff-b186-5b20e57c40a4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remover cadastro de pessoa",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/person/4ea6fb0e-bec1-4dff-b186-5b20e57c40a4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"person",
+								"4ea6fb0e-bec1-4dff-b186-5b20e57c40a4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Addresses",
+			"item": [
+				{
+					"name": "Criar cadastro de endereços",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"street\" : \"Rua sem nome\",//OBRIGATÓRIO\n    \"number\" : 10 ,//OBRIGATÓRIO\n    \"complement\" : \"Perto de tudo\",\n    \"neighborhood\" : \"Vila São Miguel\",\n    \"city\"  : \"Marte\",//OBRIGATÓRIO\n    \"state\" : \"MG\",//OBRIGATÓRIO\n    \"zipCode\" :32185020 //OBRIGATÓRIO\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/addresses",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"addresses"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Criar cadastro de endereços",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\" : \"José Antônio\", //OBRIGATÓRIO\n    \"brithDate\" : \"2021-07-01\",//OBRIGATÓRIO\n    \"email\" : \"configuracao@ww.com\" ,//OBRIGATÓRIO\n    \"gender\" : \"masculino\",\n    \"phone\" : 11998982121,    \n    \"kinship\" : \"FRIEND\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/person",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"person"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": \"e15e86a5-a3d7-4d2d-8d06-704513edde4c\",\n    \"street\": \"Rua sem nome\",\n    \"number\": 10,\n    \"complement\": \"Perto de tudo\",\n    \"neighborhood\": \"Vila São Miguel\",\n    \"city\": \"Marte\",\n    \"state\": \"MG\",\n    \"zipCode\": 32185020\n}"
+						}
+					]
+				},
+				{
+					"name": "Buscar todos as pessoas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/addresses",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"addresses"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Buscar todos as pessoas",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addresses",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addresses"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"e15e86a5-a3d7-4d2d-8d06-704513edde4c\",\n        \"street\": \"Rua sem nome\",\n        \"number\": 10,\n        \"complement\": \"Perto de tudo\",\n        \"neighborhood\": \"Vila São Miguel\",\n        \"city\": \"Marte\",\n        \"state\": \"MG\",\n        \"zipCode\": 32185020\n    },\n    {\n        \"id\": \"cf52220b-623a-4b1f-8ff1-423d3e111520\",\n        \"street\": \"Rua sem nome\",\n        \"number\": 10,\n        \"complement\": \"Perto de tudo\",\n        \"neighborhood\": \"Vila São Miguel\",\n        \"city\": \"Marte\",\n        \"state\": \"MG\",\n        \"zipCode\": 32185020\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Buscar uma pessoa",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/addresses/e15e86a5-a3d7-4d2d-8d06-704513edde4c",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"addresses",
+								"e15e86a5-a3d7-4d2d-8d06-704513edde4c"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Buscar uma pessoa",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/electronic/f02afcb0-bc19-4854-b437-3843ff33716a",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"electronic",
+										"f02afcb0-bc19-4854-b437-3843ff33716a"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": \"e15e86a5-a3d7-4d2d-8d06-704513edde4c\",\n    \"street\": \"Rua sem nome\",\n    \"number\": 10,\n    \"complement\": \"Perto de tudo\",\n    \"neighborhood\": \"Vila São Miguel\",\n    \"city\": \"Marte\",\n    \"state\": \"MG\",\n    \"zipCode\": 32185020\n}"
+						}
+					]
+				},
+				{
+					"name": "Atualizar dados de uma pessoa",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"street\" : \"Rua sem nome\",//OBRIGATÓRIO\n    \"number\" : 10 ,//OBRIGATÓRIO\n    \"complement\" : \"Perto de tudo\",\n    \"neighborhood\" : \"Vila São Miguel\",\n    \"city\"  : \"Marte\",//OBRIGATÓRIO\n    \"state\" : \"MG\",//OBRIGATÓRIO\n    \"zipCode\" :32185020 //OBRIGATÓRIO\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/addresses/e15e86a5-a3d7-4d2d-8d06-704513edde4c",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"addresses",
+								"e15e86a5-a3d7-4d2d-8d06-704513edde4c"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Atualizar dados de uma pessoa",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\" : \"José Antônio\", //OBRIGATÓRIO\n    \"brithDate\" : \"2021-07-01\",//OBRIGATÓRIO\n    \"email\" : \"configuracao@ww.com\" ,//OBRIGATÓRIO\n    \"gender\" : \"masculino\",\n    \"phone\" : 11998982121,    \n    \"kinship\" : \"FRIEND\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/person/4ea6fb0e-bec1-4dff-b186-5b20e57c40a4",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"person",
+										"4ea6fb0e-bec1-4dff-b186-5b20e57c40a4"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": \"e15e86a5-a3d7-4d2d-8d06-704513edde4c\",\n    \"street\": \"Rua sem nome\",\n    \"number\": 10,\n    \"complement\": \"Perto de tudo\",\n    \"neighborhood\": \"Vila São Miguel\",\n    \"city\": \"Marte\",\n    \"state\": \"MG\",\n    \"zipCode\": 32185020\n}"
+						}
+					]
+				},
+				{
+					"name": "Remover cadastro de pessoa",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/addresses/e15e86a5-a3d7-4d2d-8d06-704513edde4c",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"addresses",
+								"e15e86a5-a3d7-4d2d-8d06-704513edde4c"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Remover cadastro de pessoa",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"CPF\": \"111.111.111.11\",\n    \"nome\": \"eu\",\n    \"ativo\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/person/4ea6fb0e-bec1-4dff-b186-5b20e57c40a4",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"person",
+										"4ea6fb0e-bec1-4dff-b186-5b20e57c40a4"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "Address deleted successfully!"
+						}
+					]
+				}
+			]
+		}
+	]
+}
