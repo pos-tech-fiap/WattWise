@@ -1,10 +1,14 @@
 # WattWise
 Project to energy save
 
+---
+
+# Documentação
+
 ## API para cadastro de endereços
 Permite ao usuário gerenciar os dados de endereços do sistema WattWise.
 
-## Endpoints:
+### Endpoints:
 
 **TODOS os IDs usados são do tipo UUID**
 * **GET** `/addresses/{id}`
@@ -43,9 +47,11 @@ Permite ao usuário gerenciar os dados de endereços do sistema WattWise.
 * **DELETE** `/addresses/{id}`
     * Exclui um endereço
 
-## API para o cadastro de eletrodomesticos
+## API para o cadastro de eletrodomésticos
+
 **TODOS os IDs usados são do tipo UUID**
-Endpoints:
+
+###Endpoints:
 
 * **GET** `/electronic/{id}`
     * Busca um eletrodomestico por id
@@ -66,51 +72,11 @@ Endpoints:
 * **DELETE** `/electronic/{id}`
     *  Excluí um eletrodomestico
 
-## API para cadastro de endereços
-Permite ao usuário gerenciar os dados de endereços do sistema WattWise.
-
-## Endpoints:
-
-**TODOS os IDs usados são do tipo UUID**
-* **GET** `/addresses/{id}`
-    * Busca um endereço por id
-*  **GET** `/addresses`
-    * Busca todos as endereços cadastradas
-* **POST** `/addresses`
-    * Cria um novo endereço
-    * Aceita um JSON com as seguintes informações:
-    * ```json
-      {
-      "street": "string", //OBRIGATÓRIO 
-      "number": Integer, //OBRIGATÓRIO
-      "complement": "string",
-      "neighborhood": "string",
-      "city": "string", //OBRIGATÓRIO
-      "state": "string", //OBRIGATÓRIO
-      "zipcode": Integer //OBRIGATÓRIO
-      }
-      ```
-
-* **PUT** `/addresses/{id}`
-    * Edita um endereço
-    * Aceita um JSON com as seguintes informações:
-  * ```json
-      {
-      "street": "string", //OBRIGATÓRIO
-      "number": Integer, //OBRIGATÓRIO
-      "complement": "string", 
-      "neighborhood": "string", 
-      "city": "string", //OBRIGATÓRIO
-      "state": "string", //OBRIGATÓRIO
-      "zipcode": Integer //OBRIGATÓRIO
-      }
-      ```
-* **DELETE** `/addresses/{id}`
-    *  Exclui um endereço
-
 ## API para o cadastro de eletrodomesticos
+
 **TODOS os IDs usados são do tipo UUID**
-Endpoints:
+
+### Endpoints:
 
 * **GET** `/electronic/{id}`
     * Busca um eletrodomestico por id
@@ -130,11 +96,12 @@ Endpoints:
         * `String power` - potência do equipamento  **Obrigatório**
 * **DELETE** `/electronic/{id}`
     *  Excluí um eletrodomestico
+
 ## API para o cadastro de pessoas
 
 **TODOS os IDs usados são do tipo UUID**
 
-Endpoints:
+###Endpoints:
 
 * **GET** `/person/{id}`
     * Busca uma pessoa por id
