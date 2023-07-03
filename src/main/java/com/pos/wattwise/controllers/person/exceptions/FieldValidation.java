@@ -1,4 +1,4 @@
-package com.pos.wattwise.controllers.exceptions;
+package com.pos.wattwise.controllers.person.exceptions;
 
 public class FieldValidation {
 

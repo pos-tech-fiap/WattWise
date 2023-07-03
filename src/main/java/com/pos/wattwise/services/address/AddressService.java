@@ -3,7 +3,7 @@ package com.pos.wattwise.services.address;
 import com.pos.wattwise.dtos.address.AddressDTO;
 import com.pos.wattwise.models.address.Address;
 import com.pos.wattwise.repositories.address.AddressRepository;
-import com.pos.wattwise.services.exceptions.ControllerNotFoundException;
+import com.pos.wattwise.services.address.exceptions.ControllerNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

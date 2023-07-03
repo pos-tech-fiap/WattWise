@@ -1,15 +1,14 @@
-package com.pos.wattwise.repositories;
+package com.pos.wattwise.repositories.electronics;
 
-import com.pos.wattwise.dtos.ElectronicsDTO;
-import com.pos.wattwise.models.ElectronicsModel;
-import com.pos.wattwise.repositories.exception.RepositoryException;
+import com.pos.wattwise.dtos.electronics.ElectronicsDTO;
+import com.pos.wattwise.models.electronics.ElectronicsModel;
+import com.pos.wattwise.repositories.person.exception.RepositoryException;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Stream;
 
 @Repository
 public class ElectronicsRepository {
