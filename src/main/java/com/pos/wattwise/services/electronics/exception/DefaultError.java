@@ -1,4 +1,4 @@
-package com.pos.wattwise.controllers.exceptions;
+package com.pos.wattwise.services.electronics.exception;
 
 import java.time.Instant;
 
@@ -8,17 +8,14 @@ public class DefaultError {
     private Integer status;
     private String error;
     private String message;
-    private String path;
 
-    public DefaultError() {
-    }
+    public DefaultError() {}
 
-    public DefaultError(Instant timestamp, Integer status, String error, String message, String path) {
+    public DefaultError(Instant timestamp, Integer status, String error, String message) {
         this.timestamp = timestamp;
         this.status = status;
         this.error = error;
         this.message = message;
-        this.path = path;
     }
 
     public Instant getTimestamp() {
@@ -53,11 +50,4 @@ public class DefaultError {
         this.message = message;
     }
 
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
 }
