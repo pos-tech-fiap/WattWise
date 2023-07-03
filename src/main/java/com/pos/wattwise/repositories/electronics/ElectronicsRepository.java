@@ -2,7 +2,7 @@ package com.pos.wattwise.repositories.electronics;
 
 import com.pos.wattwise.dtos.electronics.ElectronicsDTO;
 import com.pos.wattwise.models.electronics.ElectronicsModel;
-import com.pos.wattwise.repositories.person.exception.RepositoryException;
+import com.pos.wattwise.repositories.exception.RepositoryException;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashSet;
@@ -21,7 +21,7 @@ public class ElectronicsRepository {
             electronicsRepository.add(electronicsModel);
             return electronicsModel;
         } catch (Exception e) {
-            throw new RepositoryException("Failed to save data !");
+            throw new RepositoryException("Failed to save data !", e);
         }
     }
 
@@ -29,7 +29,7 @@ public class ElectronicsRepository {
         try{
             return electronicsRepository;
         } catch (Exception e) {
-            throw new RepositoryException("Failed to get all data !");
+            throw new RepositoryException("Failed to get all data !", e);
         }
     }
 
@@ -39,7 +39,7 @@ public class ElectronicsRepository {
                     .filter(electronics -> electronics.findOne(id))
                     .findFirst();
         } catch (Exception e) {
-            throw new RepositoryException("Failed to get data by id!");
+            throw new RepositoryException("Failed to get data by id!", e);
         }
     }
 
@@ -52,7 +52,7 @@ public class ElectronicsRepository {
             }
             return false;
         } catch (Exception e) {
-            throw new RepositoryException("Failed to update data !");
+            throw new RepositoryException("Failed to update data !", e);
         }
     }
 
@@ -65,7 +65,7 @@ public class ElectronicsRepository {
 
             return electronic;
         } catch (Exception e) {
-            throw new RepositoryException("Failed to save data !");
+            throw new RepositoryException("Failed to save data !", e);
         }
     }
 }

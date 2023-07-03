@@ -3,7 +3,7 @@ package com.pos.wattwise.repositories.person;
 import com.pos.wattwise.dtos.person.PersonDTO;
 import com.pos.wattwise.models.person.Person;
 
-import com.pos.wattwise.repositories.person.exception.RepositoryException;
+import com.pos.wattwise.repositories.exception.RepositoryException;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashSet;

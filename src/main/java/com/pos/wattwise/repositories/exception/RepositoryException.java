@@ -1,4 +1,4 @@
-package com.pos.wattwise.repositories.person.exception;
+package com.pos.wattwise.repositories.exception;
 
 
 public class RepositoryException extends RuntimeException {
