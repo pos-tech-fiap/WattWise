@@ -5,103 +5,231 @@ Project to energy save
 
 # Documentação
 
-## API para cadastro de endereços
+## API para o cadastro de eletrodomesticos
+Permite ao usuário gerenciar os cadastros de eletrodomésticos do sistema WattWise.
+
+**TODOS os IDs usados são do tipo UUID**
+
+### Endpoints:
+
+* **GET** `/electronic/{id}`
+    * Busca uma eletrodoméstico por id
+    * Exemplo de entrada: `/electronic/d63c6013-0fd2-4863-a2a9-023059b55906`
+    * Exemplo de JSON de Saída:
+      * ```JSON
+        {
+        "id": "d63c6013-0fd2-4863-a2a9-023059b55906",
+        "name": "TV",
+        "model": "LG Plus",        
+        "power": "100W"
+        }
+        ```
+
+* **GET** `/electronic`
+    * Busca todos os eletrodomésticos cadastrados
+    * Exemplo de JSON de Saída:
+      * ```JSON
+        [
+           {
+           "id": "d63c6013-0fd2-4863-a2a9-023059b55906",
+           "name": "TV",
+           "model": "LG Plus",        
+           "power": "100W"
+           },
+           {
+           "id": "o4x87814-0yd7-4861-a5y4-0540859b50155",
+           "name": "Freezer",
+           "model": "Brastemp Ultra",        
+           "power": "150W"
+           }
+        ]
+         ```
+* **POST** `/electronic`
+    * Cria um eletrodoméstico
+    * Aceita um JSON com as seguintes informações:
+        * `String name` - nome do equipamento **Obrigatório**
+        * `String model` - modelo do equipamento **Obrigatório**
+        * `String power` - potência do equipamento  **Obrigatório**
+
+    * Exemplo de JSON de Entrada:
+      * ```JSON
+        {
+        "name": "TV",
+        "model": "LG Plus",        
+        "power": "100W"
+        }
+        ```
+    * Exemplo de JSON de Saída:
+      * ```JSON
+        {
+        "id": "d63c6013-0fd2-4863-a2a9-023059b55906",
+        "name": "TV",
+        "model": "LG Plus",        
+        "power": "100W"
+        }
+        ```
+* **PUT** `/electronic/{id}`
+    * Edita um eletrodoméstico por id
+    * Exemplo de entrada: `/electronic/d63c6013-0fd2-4863-a2a9-023059b55906`
+    * Aceita um JSON com as seguintes informações:
+        * `String name` - nome do equipamento **Obrigatório**
+        * `String model` - modelo do equipamento **Obrigatório**
+        * `String power` - potência do equipamento  **Obrigatório**
+    * Exemplo de JSON de Entrada:
+      * ```JSON
+        {
+        "name": "Monitor",
+        "model": "XTI",        
+        "power": "80W"
+        }
+        ```
+    * Exemplo de JSON de Saída:
+      * ```JSON
+        {
+        "id": "d63c6013-0fd2-4863-a2a9-023059b55906",
+        "name": "Monitor",
+        "model": "XTI",        
+        "power": "80W"
+        }
+        ```
+* **DELETE** `/electronic/{id}`
+    * Exclui um eletrodomésticos
+    * Exemplo de entrada: `/electronic/d63c6013-0fd2-4863-a2a9-023059b55906`
+    * Exemplo de Saída: Eletrodomésticos removido com sucesso.
+
+## API para o cadastro de endereços
 Permite ao usuário gerenciar os dados de endereços do sistema WattWise.
 
+**TODOS os IDs usados são do tipo UUID**
+
 ### Endpoints:
 
-**TODOS os IDs usados são do tipo UUID**
 * **GET** `/addresses/{id}`
-    * Busca um endereço por id
-*  **GET** `/addresses`
-    * Busca todos as endereços cadastradas
-* **POST** `/addresses`
-    * Cria um novo endereço
-    * Aceita um JSON com as seguintes informações:
-    * ```json
-      {
-      "street": "string", //OBRIGATÓRIO 
-      "number": Integer, //OBRIGATÓRIO
-      "complement": "string",
-      "neighborhood": "string",
-      "city": "string", //OBRIGATÓRIO
-      "state": "string", //OBRIGATÓRIO
-      "zipcode": Integer //OBRIGATÓRIO
-      }
-      ```
+    * Busca uma endereço por id
+    * Exemplo de entrada: `/addresses/d63c6013-0fd2-4863-a2a9-023059b55906`
+    * Exemplo de JSON de Saída:
+      * ```JSON
+        {
+        "id": "d63c6013-0fd2-4863-a2a9-023059b55906",
+        "street": "Emoções Street",
+        "number": 255,        
+        "complement": "",
+        "neighborhood": "Bairro Esperança",
+        "city": "Jacareí",
+        "state": "Sao Paulo",
+        "zipCode": 12309380
+        }
+        ```
 
-* **PUT** `/addresses/{id}`
-    * Edita um endereço
+* **GET** `/addresses`
+    * Busca todos os endereços cadastrados
+    * Exemplo de JSON de Saída:
+      * ```JSON
+        [
+           {
+           "id": "u87c6013-0fd2-4863-a2a9-023059b55741",
+           "street": "Emoções Street",
+           "number": 255,        
+           "complement": "",
+           "neighborhood": "Bairro Esperança",
+           "city": "Jacareí",
+           "state": "Sao Paulo",
+           "zipCode": 12309380
+           },
+           {
+           "id": "f93c6013-0fd2-4863-a2a9-023059b5599i",
+           "street": "Sandal Street",
+           "number": 1380,        
+           "complement": "Ap. B",
+           "neighborhood": "Garden Girls",
+           "city": "Boston",
+           "state": "Massachussets",
+           "zipCode": 445978
+           }
+        ]
+         ```
+* **POST** `/addresses`
+    * Cria um endereço
     * Aceita um JSON com as seguintes informações:
-  * ```json
-      {
-      "street": "string", //OBRIGATÓRIO
-      "number": Integer, //OBRIGATÓRIO
-      "complement": "string", 
-      "neighborhood": "string", 
-      "city": "string", //OBRIGATÓRIO
-      "state": "string", //OBRIGATÓRIO
-      "zipcode": Integer //OBRIGATÓRIO
-      }
-      ```
+        * `String street` - nome da rua **Obrigatório**
+        * `Integer number`  - número da casa/apartamento **Obrigatório**
+        * `String complement` - complemento
+        * `String neighborhood` - bairro
+        * `String city` - cidade **Obrigatório**
+        * `String state` - estado **Obrigatório**
+        * `integer zipCode` - código postal **Obrigatório**
+
+    * Exemplo de JSON de Entrada:
+      * ```JSON
+        {
+        "street": "Sandal Street",
+        "number": 1380,        
+        "complement": "Ap. B",
+        "neighborhood": "Garden Girls",
+        "city": "Boston",
+        "state": "Massachussets",
+        "zipCode": 445978
+        }
+        ```
+    * Exemplo de JSON de Saída:
+      * ```JSON
+        {
+        "id": "cd1013cc-bc61-4970-88c1-9d3f85a4b3f1",
+        "street": "Sandal Street",
+        "number": 1380,        
+        "complement": "Ap. B",
+        "neighborhood": "Garden Girls",
+        "city": "Boston",
+        "state": "Massachussets",
+        "zipCode": 445978
+        }
+        ```
+* **PUT** `/addresses/{id}`
+    * Edita um endereço por id
+    * Exemplo de entrada: `/addresses/d63c6013-0fd2-4863-a2a9-023059b55906`
+    * Aceita um JSON com as seguintes informações:
+        * `String street` - nome da rua **Obrigatório**
+        * `Integer number`  - número da casa/apartamento **Obrigatório**
+        * `String complement` - complemento
+        * `String neighborhood` - bairro
+        * `String city` - cidade **Obrigatório**
+        * `String state` - estado **Obrigatório**
+        * `integer zipCode` - código postal **Obrigatório**
+    * Exemplo de JSON de Entrada:
+      * ```JSON
+        {
+        "street": "Sandal Street",
+        "number": 1380,        
+        "complement": "Ap. B",
+        "neighborhood": "Garden Girls",
+        "city": "Boston",
+        "state": "Massachussets",
+        "zipCode": 445978
+        }
+        ```
+    * Exemplo de JSON de Saída:
+      * ```JSON
+        {
+        "id": "d63c6013-0fd2-4863-a2a9-023059b55906",
+        "street": "Sandal Street",
+        "number": 1380,        
+        "complement": "Ap. B",
+        "neighborhood": "Garden Girls",
+        "city": "Boston",
+        "state": "Massachussets",
+        "zipCode": 445978
+        }
+        ```
 * **DELETE** `/addresses/{id}`
     * Exclui um endereço
-
-## API para o cadastro de eletrodomésticos
-
-**TODOS os IDs usados são do tipo UUID**
-
-###Endpoints:
-
-* **GET** `/electronic/{id}`
-    * Busca um eletrodomestico por id
-*  **GET** `/electronic`
-    * Busca todos as eletrotomesticos cadastradas
-* **POST** `/electronic`
-    * Cria um novo eletrodomestico
-    * Aceita um JSON com as seguintes informações:
-        * `String name` - nome do equipamento **Obrigatório**
-        * `String model` - modelo do equipamento **Obrigatório**
-        * `String power` - potência do equipamento  **Obrigatório**
-* **PUT** `/electronic/{id}`
-    * Edita um eletrodomestico
-    * Aceita um JSON com as seguintes informações:
-        * `String name` - nome do equipamento **Obrigatório**
-        * `String model` - modelo do equipamento **Obrigatório**
-        * `String power` - potência do equipamento  **Obrigatório**
-* **DELETE** `/electronic/{id}`
-    *  Excluí um eletrodomestico
-
-## API para o cadastro de eletrodomesticos
-
-**TODOS os IDs usados são do tipo UUID**
-
-### Endpoints:
-
-* **GET** `/electronic/{id}`
-    * Busca um eletrodomestico por id
-*  **GET** `/electronic`
-    * Busca todos as eletrotomesticos cadastradas
-* **POST** `/electronic`
-    * Cria um novo eletrodomestico
-    * Aceita um JSON com as seguintes informações:
-        * `String name` - nome do equipamento **Obrigatório**
-        * `String model` - modelo do equipamento **Obrigatório**
-        * `String power` - potência do equipamento  **Obrigatório**
-* **PUT** `/electronic/{id}`
-    * Edita um eletrodomestico
-    * Aceita um JSON com as seguintes informações:
-        * `String name` - nome do equipamento **Obrigatório**
-        * `String model` - modelo do equipamento **Obrigatório**
-        * `String power` - potência do equipamento  **Obrigatório**
-* **DELETE** `/electronic/{id}`
-    *  Excluí um eletrodomestico
+    * Exemplo de entrada: `/addresses/d63c6013-0fd2-4863-a2a9-023059b55906`
+    * Exemplo de Saída: Endereço removido com sucesso.
 
 ## API para o cadastro de pessoas
 
 **TODOS os IDs usados são do tipo UUID**
 
-###Endpoints:
+### Endpoints:
 
 * **GET** `/person/{id}`
     * Busca uma pessoa por id
@@ -179,6 +307,7 @@ Permite ao usuário gerenciar os dados de endereços do sistema WattWise.
         ```
 * **PUT** `/person/{id}`
     * Edita uma pessoa
+    * Exemplo de entrada: `/person/d63c6013-0fd2-4863-a2a9-023059b55906`
     * Aceita um JSON com as seguintes informações:
         * `String name` - nome da pessoa **Obrigatório**
         * `Date brithDate`  - data de nascimento **Obrigatório**
@@ -211,6 +340,6 @@ Permite ao usuário gerenciar os dados de endereços do sistema WattWise.
           }
           ```
 * **DELETE** `/person/{id}`
-    * Excluí uma pessoa
+    * Exclui uma pessoa
     * Exemplo de entrada: `/person/ba1e8bec-cea3-4ca7-a7da-9cee42b087ea`
     * Exemplo de Saída: Pessoa removida com sucesso
