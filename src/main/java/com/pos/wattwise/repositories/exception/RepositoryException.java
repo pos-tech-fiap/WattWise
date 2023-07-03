@@ -1,7 +1,10 @@
 package com.pos.wattwise.repositories.exception;
 
-public class RepositoryException extends  RuntimeException{
-    public RepositoryException(String msg) {
-        super(msg);
+
+public class RepositoryException extends RuntimeException {
+
+    public RepositoryException(String message, Throwable throwable) {
+        super(message, throwable);
+
     }
 }
