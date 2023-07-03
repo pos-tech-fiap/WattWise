@@ -1,8 +1,8 @@
-package com.pos.wattwise.controllers;
+package com.pos.wattwise.controllers.electronics;
 
-import com.pos.wattwise.dtos.ElectronicsDTO;
-import com.pos.wattwise.models.ElectronicsModel;
-import com.pos.wattwise.services.ElectronicsService;
+import com.pos.wattwise.dtos.electronics.ElectronicsDTO;
+import com.pos.wattwise.models.electronics.ElectronicsModel;
+import com.pos.wattwise.services.electronics.ElectronicsService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

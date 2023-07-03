@@ -1,4 +1,4 @@
-package com.pos.wattwise.dtos;
+package com.pos.wattwise.dtos.electronics;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;

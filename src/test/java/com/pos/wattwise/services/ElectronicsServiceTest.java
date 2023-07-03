@@ -1,24 +1,20 @@
 package com.pos.wattwise.services;
 
-import com.pos.wattwise.controllers.ElectronicsController;
-import com.pos.wattwise.dtos.ElectronicsDTO;
-import com.pos.wattwise.models.ElectronicsModel;
-import com.pos.wattwise.repositories.ElectronicsRepository;
-import org.junit.jupiter.api.Assertions;
+import com.pos.wattwise.models.electronics.ElectronicsModel;
+import com.pos.wattwise.repositories.electronics.ElectronicsRepository;
+import com.pos.wattwise.services.electronics.ElectronicsService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
 public class ElectronicsServiceTest {

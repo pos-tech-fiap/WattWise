@@ -1,8 +1,8 @@
-package com.pos.wattwise.services;
+package com.pos.wattwise.services.electronics;
 
-import com.pos.wattwise.dtos.ElectronicsDTO;
-import com.pos.wattwise.models.ElectronicsModel;
-import com.pos.wattwise.repositories.ElectronicsRepository;
+import com.pos.wattwise.dtos.electronics.ElectronicsDTO;
+import com.pos.wattwise.models.electronics.ElectronicsModel;
+import com.pos.wattwise.repositories.electronics.ElectronicsRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.pos.wattwise.models;
+package com.pos.wattwise.models.electronics;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
