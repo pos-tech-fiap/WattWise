@@ -1,11 +1,16 @@
 package com.pos.wattwise.models.address;
 
+import jakarta.persistence.*;
 
 import java.util.Objects;
 import java.util.UUID;
 
+@Entity
+@Table(name = "tb_address")
 public class Address {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String street;
     private Integer number;

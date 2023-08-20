@@ -4,11 +4,12 @@ import com.pos.wattwise.dtos.address.AddressDTO;
 import com.pos.wattwise.services.address.AddressService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
 import java.util.UUID;
 
 @RestController
@@ -19,18 +20,22 @@ public class AddressController {
     private AddressService addressService;
 
     @GetMapping
-    public ResponseEntity<Set<AddressDTO>> findAll() {
-        return ResponseEntity.ok().body(addressService.findAll());
-    }
-
-    @PostMapping
-    public ResponseEntity<AddressDTO> save(@RequestBody @Valid AddressDTO addressDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(addressService.save(addressDTO));
+    public ResponseEntity<Page<AddressDTO>> findAll(
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "size", defaultValue = "10") Integer size
+    ) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        return ResponseEntity.ok().body(addressService.findAll(pageRequest));
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<AddressDTO> findById(@PathVariable UUID id) {
         return ResponseEntity.ok().body(addressService.findById(id));
+    }
+
+    @PostMapping
+    public ResponseEntity<AddressDTO> save(@RequestBody @Valid AddressDTO addressDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(addressService.save(addressDTO));
     }
 
     @PutMapping(value = "/{id}")
