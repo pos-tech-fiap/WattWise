@@ -3,67 +3,64 @@ package com.pos.wattwise.repositories.electronics;
 import com.pos.wattwise.dtos.electronics.ElectronicsDTO;
 import com.pos.wattwise.models.electronics.ElectronicsModel;
 import com.pos.wattwise.repositories.exception.RepositoryException;
+import com.pos.wattwise.services.address.exceptions.DatabaseException;
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 
 @Repository
 public class ElectronicsRepository {
-   private Set<ElectronicsModel> electronicsRepository;
+    @Autowired
+    private IProdutoRepository repo;
 
-    public ElectronicsRepository() { electronicsRepository = new HashSet<>(); }
-
-    public ElectronicsModel save(ElectronicsModel electronicsModel){
+    public Page<ElectronicsModel> findAll(PageRequest pagina) {
         try {
-            electronicsRepository.add(electronicsModel);
+            var electronics = repo.findAll(pagina);
+            return electronics.map(prod -> new ElectronicsModel(prod));
+        } catch (Exception e) {
+            throw new RepositoryException("Failed to get all data !", e);
+        }
+    }
+
+    public ElectronicsModel save(ElectronicsModel electronicsModel) {
+        try {
+            repo.save(electronicsModel);
             return electronicsModel;
         } catch (Exception e) {
             throw new RepositoryException("Failed to save data !", e);
         }
     }
 
-    public Set<ElectronicsModel> findAll() {
-        try{
-            return electronicsRepository;
-        } catch (Exception e) {
-            throw new RepositoryException("Failed to get all data !", e);
-        }
+    public ElectronicsModel findById(UUID id) {
+        var electronic = repo.findById(id).orElseThrow(() -> new RepositoryException("Failed to get data by id!", null));
+        return new ElectronicsModel(electronic);
     }
 
-    public Optional<ElectronicsModel> findById(UUID id) {
-        try{
-            return electronicsRepository.stream()
-                    .filter(electronics -> electronics.findOne(id))
-                    .findFirst();
-        } catch (Exception e) {
-            throw new RepositoryException("Failed to get data by id!", e);
-        }
-    }
-
-    public boolean removeById(UUID id) {
-        try{
-            ElectronicsModel electronic = this.findById(id).orElse(null);
-            if(electronic != null){
-                electronicsRepository.remove(electronic);
-                return true;
-            }
-            return false;
-        } catch (Exception e) {
-            throw new RepositoryException("Failed to update data !", e);
+    public void removeById(UUID id) {
+        try {
+            repo.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new EntityNotFoundException("Entity not found with ID: " + id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("Base integrity violation");
         }
     }
 
     public ElectronicsModel update(ElectronicsDTO electronicsDTO, UUID id) {
         try {
-            ElectronicsModel electronic = this.findById(id).orElse(null);
+            ElectronicsModel electronic = repo.getOne(id);
             electronic.setName(electronicsDTO.name());
             electronic.setModel(electronicsDTO.model());
             electronic.setPower(electronicsDTO.power());
+            electronic = repo.save(electronic);
 
-            return electronic;
+            return new ElectronicsModel(electronic);
         } catch (Exception e) {
             throw new RepositoryException("Failed to save data !", e);
         }

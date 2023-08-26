@@ -5,6 +5,7 @@ import com.pos.wattwise.models.electronics.ElectronicsModel;
 import com.pos.wattwise.services.electronics.ElectronicsService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,11 +31,11 @@ public class ElectronicsController {
     }
     @GetMapping("/electronic")
     public ResponseEntity<Set<ElectronicsModel>> getAll(){
-        Set<ElectronicsModel> allElectronics = (Set<ElectronicsModel>) electronicsService.findAll();
-        if (allElectronics.isEmpty()) {
-            return ResponseEntity.badRequest().body(new HashSet<>());
-        }
-        return ResponseEntity.ok(allElectronics);
+        var pagina = 0;
+        var tamanho = 10;
+        PageRequest pageRequest = PageRequest.of(pagina, tamanho);
+        var produtos = electronicsService.findAll(pageRequest);
+        return ResponseEntity.ok(produtos);
 
     }
     @GetMapping("/electronic/{id}")
@@ -47,11 +48,8 @@ public class ElectronicsController {
     }
     @DeleteMapping("/electronic/{id}")
     public ResponseEntity delete(@PathVariable(value = "id") UUID id){
-        Boolean removedElectronics = electronicsService.removeById(id);
-        if (!removedElectronics) {
-            return ResponseEntity.badRequest().body("Electronic device not found on this system");
-        }
-        return ResponseEntity.ok().body("Electronic device was successful removed");
+        electronicsService.removeById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

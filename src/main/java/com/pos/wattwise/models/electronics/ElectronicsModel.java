@@ -1,19 +1,30 @@
 package com.pos.wattwise.models.electronics;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 
 
 import java.util.Objects;
 import java.util.UUID;
+
+@Entity
+@Table(name = "tb_electronics")
 public class ElectronicsModel {
-    @JsonProperty
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    @JsonProperty
     private String name;
-    @JsonProperty
     private String model;
-    @JsonProperty
     private String power;
+
+    public ElectronicsModel() {
+    }
+    public ElectronicsModel(ElectronicsModel entity) {
+        this.id = entity.getId();
+        this.model = entity.getModel();
+        this.name = entity.getName();
+        this.power = entity.getPower();
+    }
 
     public UUID getId() {
         return id;
@@ -58,13 +69,4 @@ public class ElectronicsModel {
     public int hashCode() {
         return Objects.hash(id);
     }
-
-    public ElectronicsModel() {
-        this.id = UUID.randomUUID();
-    }
-
-    public boolean findOne(UUID id) {
-        return this.id.equals(id);
-    }
-
 }
