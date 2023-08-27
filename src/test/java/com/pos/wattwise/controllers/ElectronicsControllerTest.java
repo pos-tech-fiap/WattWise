@@ -1,10 +1,10 @@
 package com.pos.wattwise.controllers;
 
-import com.pos.wattwise.controllers.electronics.ElectronicsController;
+import com.pos.wattwise.controllers.electronic.ElectronicController;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 
 
-@WebMvcTest(ElectronicsController.class)
+@WebMvcTest(ElectronicController.class)
 public class ElectronicsControllerTest {
 
 }

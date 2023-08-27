@@ -1,13 +1,13 @@
-package com.pos.wattwise.controllers.person.exceptions;
+package com.pos.wattwise.controllers.exceptions;
 
-public class FieldValidation {
+public class ValidationField {
 
     private String field;
     private String message;
 
-    public FieldValidation() {}
+    public ValidationField() {}
 
-    public FieldValidation(String field, String message) {
+    public ValidationField(String field, String message) {
         this.field = field;
         this.message = message;
     }

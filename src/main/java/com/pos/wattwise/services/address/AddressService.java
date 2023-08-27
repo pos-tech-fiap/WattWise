@@ -3,8 +3,7 @@ package com.pos.wattwise.services.address;
 import com.pos.wattwise.dtos.address.AddressDTO;
 import com.pos.wattwise.models.address.Address;
 import com.pos.wattwise.repositories.address.AddressRepository;
-import com.pos.wattwise.services.address.exceptions.ControllerNotFoundException;
-import org.springframework.beans.BeanUtils;
+import com.pos.wattwise.services.exceptions.ControllerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -44,7 +43,7 @@ public class AddressService {
         try {
             Address address = addressRepository.getOne(id);
             mapperDtoToEntity(addressDTO, address);
-            return addressDTO;
+            return new AddressDTO(address);
         } catch (NoSuchElementException e) {
             throw new ControllerNotFoundException("Address not found, id: " + id);
         }

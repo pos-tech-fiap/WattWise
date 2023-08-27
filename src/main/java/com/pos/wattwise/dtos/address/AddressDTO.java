@@ -22,11 +22,11 @@ public class AddressDTO {
     @NotBlank
     private String state;
     @NotNull
-    private Integer zipCode;
+    private String zipCode;
 
     public AddressDTO() {
     }
-    public AddressDTO(UUID id, String street, Integer number, String complement, String neighborhood, String city, String state, Integer zipCode) {
+    public AddressDTO(UUID id, String street, Integer number, String complement, String neighborhood, String city, String state, String zipCode) {
         this.id = id;
         this.street = street;
         this.number = number;
@@ -104,11 +104,11 @@ public class AddressDTO {
         this.state = state;
     }
 
-    public Integer getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(Integer zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 }

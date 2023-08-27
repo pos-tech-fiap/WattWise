@@ -1,7 +1,8 @@
-package com.pos.wattwise.controllers.person.exceptions;
+package com.pos.wattwise.controllers.exceptions;
 
-import com.pos.wattwise.services.address.exceptions.ControllerNotFoundException;
-import com.pos.wattwise.services.address.exceptions.DatabaseException;
+import com.pos.wattwise.services.exceptions.ControllerNotFoundException;
+import com.pos.wattwise.services.exceptions.DatabaseException;
+import com.pos.wattwise.services.exceptions.DefaultError;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +14,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import java.time.Instant;
 
 @ControllerAdvice
-public class ControllerExceptionHandler {
 
-    private DefaultError error = new DefaultError();
+public class ControllerExceptionHandler extends  RuntimeException{
+    DefaultError error = new DefaultError();
 
     @ExceptionHandler(ControllerNotFoundException.class)
     public ResponseEntity<DefaultError> entityNotFound(ControllerNotFoundException exception, HttpServletRequest request) {
