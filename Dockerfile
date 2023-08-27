@@ -2,7 +2,7 @@
 # docker run -p 5432:5432 -v $(pwd):/wattwise/ wattwise-local
 ####POSTGRES INTERFACE
 ##docker network create pg_network
-#docker run -d --network pg_network -p 5050:5050 --name pgadmin-container -e PGADMIN_DEFAULT_EMAIL=user@example.com -e PGADMIN_DEFAULT_PASSWORD=SuperSecretPassword dpage/pgadmin4
+#docker run -d --network pg_network -p 5050:5050 --name pgadmin-container -e PGADMIN_DEFAULT_EMAIL=wattwise@wattwise.com -e PGADMIN_DEFAULT_PASSWORD=postgres dpage/pgadmin4
 ###
 
 FROM postgres:latest
