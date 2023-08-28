@@ -1,24 +1,46 @@
 package com.pos.wattwise.models.address;
 
+import com.pos.wattwise.models.electronic.Electronic;
+import com.pos.wattwise.models.person.Person;
+import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
+@Entity
+@Table(name = "tb_address")
 public class Address {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
     private String street;
+
     private Integer number;
+
     private String complement;
+
     private String neighborhood;
+
     private String city;
+
     private String state;
-    private Integer zipCode;
+
+    private String zipCode;
+
+    @ManyToMany(mappedBy = "addresses")
+    private Set<Person> persons = new HashSet<>();
+
+    @OneToMany(mappedBy = "address")
+    private Set<Electronic> electronics = new HashSet<>();
 
     public Address() {
     }
 
-    public Address(UUID id, String street, String city, Integer zipCode, String state, Integer number, String complement, String neighborhood) {
+    public Address(UUID id, String street, String city, String zipCode, String state, Integer number, String complement, String neighborhood, Set<Electronic> electronics) {
         this.id = id;
         this.street = street;
         this.city = city;
@@ -27,6 +49,7 @@ public class Address {
         this.number = number;
         this.complement = complement;
         this.neighborhood = neighborhood;
+        this.electronics = electronics;
     }
 
     public UUID getId() {
@@ -56,11 +79,11 @@ public class Address {
         return this;
     }
 
-    public Integer getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public Address setZipCode(Integer zipCode) {
+    public Address setZipCode(String zipCode) {
         this.zipCode = zipCode;
         return this;
     }
@@ -99,6 +122,14 @@ public class Address {
     public Address setNeighborhood(String neighborhood) {
         this.neighborhood = neighborhood;
         return this;
+    }
+
+    public Set<Person> getPersons() {
+        return persons;
+    }
+
+    public Set<Electronic> getElectronics() {
+        return electronics;
     }
 
     @Override

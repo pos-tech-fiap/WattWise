@@ -1,4 +1,4 @@
-package com.pos.wattwise.services.address.exceptions;
+package com.pos.wattwise.services.exceptions;
 
 public class ControllerNotFoundException extends RuntimeException {
 

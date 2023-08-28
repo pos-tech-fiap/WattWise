@@ -1,15 +1,22 @@
 package com.pos.wattwise.services.person;
 
+import com.pos.wattwise.dtos.address.AddressDTO;
+import com.pos.wattwise.dtos.electronic.ElectronicDTO;
 import com.pos.wattwise.dtos.person.PersonDTO;
+import com.pos.wattwise.models.address.Address;
+import com.pos.wattwise.models.electronic.Electronic;
 import com.pos.wattwise.models.person.Person;
+import com.pos.wattwise.repositories.address.AddressRepository;
+import com.pos.wattwise.repositories.electronic.ElectronicRepository;
 import com.pos.wattwise.repositories.person.PersonRepository;
-
-import org.springframework.beans.BeanUtils;
+import com.pos.wattwise.services.exceptions.ControllerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-import java.util.Set;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Service
@@ -18,26 +25,67 @@ public class PersonService {
     @Autowired
     private PersonRepository personRepository;
 
-    public Optional<Person> findById(UUID id) {
-        return personRepository.findById(id);
+    @Autowired
+    private AddressRepository addressRepository;
+
+    @Autowired
+    private ElectronicRepository electronicRepository;
+
+    @Transactional(readOnly = true)
+    public Page<PersonDTO> findAll(PageRequest pageRequest) {
+        Page<Person> personas = personRepository.findAll(pageRequest);
+        return personas.map(person -> new PersonDTO(person, person.getAddresses(), person.getElectronics()));
     }
 
-    public Set<Person> findAll() {
-        return personRepository.findAll();
+    @Transactional(readOnly = true)
+    public PersonDTO findById(UUID id) {
+        var person = personRepository.findById(id).orElseThrow(() -> new ControllerNotFoundException("Person not found"));
+        return new PersonDTO(person, person.getAddresses(), person.getElectronics());
     }
 
-    public Person create(PersonDTO createPersonDTO) {
+    @Transactional
+    public PersonDTO save(PersonDTO personDTO) {
         Person person = new Person();
-        BeanUtils.copyProperties(createPersonDTO, person);
-
-        return personRepository.save(person);
+        mapperDtoToEntity(personDTO, person);
+        var personSaved = personRepository.save(person);
+        return new PersonDTO(personSaved, personSaved.getAddresses(), personSaved.getElectronics());
     }
 
-    public Person update(UUID id, PersonDTO personDto) {
-        return personRepository.update(id, personDto);
+    @Transactional
+    public PersonDTO update(UUID id, PersonDTO personDTO) {
+        try {
+            Person person = personRepository.getOne(id);
+            mapperDtoToEntity(personDTO, person);
+            return new PersonDTO(person, person.getAddresses(), person.getElectronics());
+        } catch (NoSuchElementException e) {
+            throw new ControllerNotFoundException("Person not found, id: " + id);
+        }
     }
 
-    public boolean delete(UUID id) {
-        return personRepository.delete(id);
+    public void delete(UUID id) {
+        try {
+            personRepository.deleteById(id);
+        } catch (NoSuchElementException e) {
+            throw new ControllerNotFoundException("Person not found, id: " + id);
+        }
+    }
+
+    private void mapperDtoToEntity(PersonDTO dto, Person person) {
+        person.setName(dto.getName());
+        person.setGender(dto.getGender());
+        person.setBirthDate(dto.getBirthDate());
+        person.setEmail(dto.getEmail());
+        person.setPhone(dto.getPhone());
+        person.setKinship(dto.getKinship());
+
+        for (AddressDTO addressDTO: dto.getAddresses()) {
+            Address address = addressRepository.getOne(addressDTO.getId());
+            person.getAddresses().add(address);
+        }
+
+        for (ElectronicDTO electronicDTO: dto.getElectronics()) {
+            Electronic electronic = electronicRepository.getOne(electronicDTO.getId());
+            person.getElectronics().add(electronic);
+        }
     }
 }
