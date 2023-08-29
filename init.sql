@@ -10,8 +10,9 @@ CREATE TABLE IF NOT EXISTS tb_person(
     gender VARCHAR(255),
     birth_date date not null,
     email VARCHAR(255),
-    phone VARCHAR(15)
-);
+    phone VARCHAR(15),
+    kinship VARCHAR(20)
+    );
 
 CREATE TABLE IF NOT EXISTS tb_address(
     id UUID primary key,
