@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS tb_person(
     id UUID primary key,
     name VARCHAR(255) not null,
     gender VARCHAR(255),
-    birthDate date not null,
+    birth_date date not null,
     email VARCHAR(255),
     phone VARCHAR(15)
 );
