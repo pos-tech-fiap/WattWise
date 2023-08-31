@@ -8,10 +8,11 @@ CREATE TABLE IF NOT EXISTS tb_person(
     id UUID primary key,
     name VARCHAR(255) not null,
     gender VARCHAR(255),
-    birthDate date not null,
+    birth_date date not null,
     email VARCHAR(255),
-    phone VARCHAR(15)
-);
+    phone VARCHAR(15),
+    kinship VARCHAR(20)
+    );
 
 CREATE TABLE IF NOT EXISTS tb_address(
     id UUID primary key,
@@ -30,7 +31,7 @@ CREATE TABLE IF NOT EXISTS tb_electronic(
     model VARCHAR(255) not null,
     power VARCHAR(255) not null,
     address_id UUID not null,
-    foreign key(address_id) references tb_address(id) on delete cascade;
+    foreign key(address_id) references tb_address(id) on delete cascade
 );
 
 CREATE TABLE IF NOT EXISTS tb_person_address(

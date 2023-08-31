@@ -5,6 +5,24 @@ Project to energy save
 
 # Documentação
 
+## Rodar o banco de dados
+
+Parar rodar o banco de dados, é necessário executar o Dockerfile, com os seguintes comandos:
+
+```sql
+docker build -f Dockerfile -t wattwise-local .
+
+docker network create pg_network
+
+docker run -d --network pg_network  -p 5432:5432 -v $(pwd):/wattwise/ wattwise-local
+```
+
+Opcional: para rodar o pgAdmin:
+
+```sql
+docker run -d --network pg_network -p 5050:5050 --name pgadmin-container -e PGADMIN_DEFAULT_EMAIL=user@example.com -e PGADMIN_DEFAULT_PASSWORD=SuperSecretPassword dpage/pgadmin4
+```
+
 ## API para o cadastro de eletrodomesticos
 Permite ao usuário gerenciar os cadastros de eletrodomésticos do sistema WattWise.
 
