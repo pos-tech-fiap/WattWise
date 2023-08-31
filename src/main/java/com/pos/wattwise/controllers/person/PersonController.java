@@ -1,6 +1,7 @@
 package com.pos.wattwise.controllers.person;
 
 import com.pos.wattwise.dtos.person.PersonDTO;
+import com.pos.wattwise.models.person.Kinship;
 import com.pos.wattwise.services.person.PersonService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -31,6 +33,11 @@ public class PersonController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<PersonDTO> findById(@PathVariable UUID id) {
         return ResponseEntity.ok().body(personService.findById(id));
+    }
+
+    @GetMapping(value = "/find")
+    public ResponseEntity<List<PersonDTO>> find(String name, String gender, String email, Kinship kinship) {
+        return ResponseEntity.ok().body(personService.find(name, gender, email, kinship));
     }
 
     @PostMapping
