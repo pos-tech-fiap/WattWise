@@ -5,6 +5,7 @@ import com.pos.wattwise.dtos.electronic.ElectronicDTO;
 import com.pos.wattwise.dtos.person.PersonDTO;
 import com.pos.wattwise.models.address.Address;
 import com.pos.wattwise.models.electronic.Electronic;
+import com.pos.wattwise.models.person.Kinship;
 import com.pos.wattwise.models.person.Person;
 import com.pos.wattwise.repositories.address.AddressRepository;
 import com.pos.wattwise.repositories.electronic.ElectronicRepository;
@@ -16,8 +17,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class PersonService {
@@ -41,6 +45,28 @@ public class PersonService {
     public PersonDTO findById(UUID id) {
         var person = personRepository.findById(id).orElseThrow(() -> new ControllerNotFoundException("Person not found"));
         return new PersonDTO(person, person.getAddresses(), person.getElectronics());
+    }
+
+    @Transactional(readOnly = true)
+    public List<PersonDTO> find(String name, String gender, String email, Kinship kinship) {
+        List<Person> personList = new ArrayList<>();
+        if (name != null) {
+            personList.addAll(personRepository.findByName(name));
+        }
+
+        if (gender != null) {
+            personList.addAll(personRepository.findByGender(gender));
+        }
+
+        if (email != null) {
+            personList.addAll(personRepository.findByEmail(email));
+        }
+
+        if (kinship != null) {
+            personList.addAll(personRepository.findByKinship(kinship));
+        }
+
+        return personList.stream().map(PersonDTO::new).collect(Collectors.toList());
     }
 
     @Transactional
