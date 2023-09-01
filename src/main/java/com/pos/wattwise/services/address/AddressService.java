@@ -43,7 +43,7 @@ public class AddressService {
         try {
             Address address = addressRepository.getOne(id);
             mapperDtoToEntity(addressDTO, address);
-            return new AddressDTO(address);
+            return new AddressDTO(addressRepository.save(address));
         } catch (NoSuchElementException e) {
             throw new ControllerNotFoundException("Address not found, id: " + id);
         }

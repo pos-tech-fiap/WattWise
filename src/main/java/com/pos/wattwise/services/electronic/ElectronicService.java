@@ -65,7 +65,7 @@ public class ElectronicService {
         try {
             Electronic electronic = electronicRepository.getOne(id);
             mapperDtoToEntity(electronicDTO, electronic);
-            return new ElectronicDTO(electronic);
+            return new ElectronicDTO(electronicRepository.save(electronic));
         } catch (NoSuchElementException e) {
             throw new ControllerNotFoundException("Electronic not found, id: " + id);
         }
@@ -92,9 +92,7 @@ public class ElectronicService {
                 .orElseThrow(() -> new ControllerNotFoundException("Electronic not found, id: " + id));
 
         double energyConsumption = (Double.parseDouble(electronic.getPower()) * usageTimeInHours) / 1000;
-        System.out.printf("###############################################");
         electronic.setEnergyConsumption(energyConsumption);
-        System.out.print(electronic.getEnergyConsumption());
-        return new ElectronicDTO(electronic);
+        return new ElectronicDTO(electronicRepository.save(electronic));
     }
 }

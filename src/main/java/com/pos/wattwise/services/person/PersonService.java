@@ -82,7 +82,8 @@ public class PersonService {
         try {
             Person person = personRepository.getOne(id);
             mapperDtoToEntity(personDTO, person);
-            return new PersonDTO(person, person.getAddresses(), person.getElectronics());
+            var personSaved = personRepository.save(person);
+            return new PersonDTO(personSaved, personSaved.getAddresses(), personSaved.getElectronics());
         } catch (NoSuchElementException e) {
             throw new ControllerNotFoundException("Person not found, id: " + id);
         }
