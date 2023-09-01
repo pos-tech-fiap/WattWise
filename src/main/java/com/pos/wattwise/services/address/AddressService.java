@@ -20,8 +20,14 @@ public class AddressService {
     private AddressRepository addressRepository;
 
     @Transactional(readOnly = true)
-    public Page<AddressDTO> findAll(PageRequest pageRequest) {
-        Page<Address> addresses = addressRepository.findAll(pageRequest);
+    public Page<AddressDTO> findAll(PageRequest pageRequest, String street, String neighborhood, String city, String state, String zipCode) {
+        Page<Address> addresses;
+
+        if (street.isEmpty() && neighborhood.isEmpty() && city.isEmpty() && state.isEmpty() && zipCode.isEmpty()) {
+            addresses = addressRepository.findAll(pageRequest);
+        } else {
+            addresses = addressRepository.findByStreetAndNeighborhoodAndCityAndStateAndZipCode(pageRequest, street, neighborhood, city, state, zipCode);
+        }
         return addresses.map(AddressDTO::new);
     }
 

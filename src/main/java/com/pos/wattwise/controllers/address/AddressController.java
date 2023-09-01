@@ -6,10 +6,12 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -22,10 +24,16 @@ public class AddressController {
     @GetMapping
     public ResponseEntity<Page<AddressDTO>> findAll(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
-            @RequestParam(value = "size", defaultValue = "10") Integer size
+            @RequestParam(value = "size", defaultValue = "10") Integer size,
+            @RequestParam(value = "street", defaultValue = "") String street,
+            @RequestParam(value = "neighborhood", defaultValue = "") String neighborhood,
+            @RequestParam(value = "city", defaultValue = "") String city,
+            @RequestParam(value = "state", defaultValue = "") String state,
+            @RequestParam(value = "zipCode", defaultValue = "") String zipCode
     ) {
         PageRequest pageRequest = PageRequest.of(page, size);
-        return ResponseEntity.ok().body(addressService.findAll(pageRequest));
+        Page<AddressDTO> addresses = addressService.findAll(pageRequest, street, neighborhood, city, state, zipCode);
+        return ResponseEntity.ok().body(addresses);
     }
 
     @GetMapping(value = "/{id}")
