@@ -66,7 +66,7 @@ public class PersonService {
             personList.addAll(personRepository.findByKinship(kinship));
         }
 
-        return personList.stream().map(PersonDTO::new).collect(Collectors.toList());
+        return personList.stream().map(person -> new PersonDTO(person, person.getAddresses(), person.getElectronics())).collect(Collectors.toList());
     }
 
     @Transactional
