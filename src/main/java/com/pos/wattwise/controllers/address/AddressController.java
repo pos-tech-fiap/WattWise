@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -25,7 +26,14 @@ public class AddressController {
             @RequestParam(value = "size", defaultValue = "10") Integer size
     ) {
         PageRequest pageRequest = PageRequest.of(page, size);
-        return ResponseEntity.ok().body(addressService.findAll(pageRequest));
+        Page<AddressDTO> addresses = addressService.findAll(pageRequest);
+        return ResponseEntity.ok().body(addresses);
+    }
+
+    @GetMapping(value = "/find")
+    public ResponseEntity<List<AddressDTO>> find(String street, String neighborhood, String city, String state, String zipCode) {
+        List<AddressDTO> addresses = addressService.find(street, neighborhood, city, state, zipCode);
+        return ResponseEntity.ok(addresses);
     }
 
     @GetMapping(value = "/{id}")

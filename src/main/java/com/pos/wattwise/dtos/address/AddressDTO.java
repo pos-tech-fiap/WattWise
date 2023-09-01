@@ -1,9 +1,16 @@
 package com.pos.wattwise.dtos.address;
 
+import com.pos.wattwise.dtos.electronic.ElectronicDTO;
+import com.pos.wattwise.dtos.person.PersonDTO;
 import com.pos.wattwise.models.address.Address;
+import com.pos.wattwise.models.electronic.Electronic;
+import com.pos.wattwise.models.person.Person;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public class AddressDTO {
@@ -24,8 +31,13 @@ public class AddressDTO {
     @NotNull
     private String zipCode;
 
+    private List<PersonDTO> persons = new ArrayList<>();
+
+    private List<ElectronicDTO> electronics = new ArrayList<>();
+
     public AddressDTO() {
     }
+
     public AddressDTO(UUID id, String street, Integer number, String complement, String neighborhood, String city, String state, String zipCode) {
         this.id = id;
         this.street = street;
@@ -46,6 +58,12 @@ public class AddressDTO {
         this.city = address.getCity();
         this.state = address.getState();
         this.zipCode = address.getZipCode();
+    }
+
+    public AddressDTO(Address address, Set<Person> persons, Set<Electronic> electronics) {
+        this(address);
+        persons.forEach(person -> this.persons.add(new PersonDTO(person)));
+        electronics.forEach(electronic -> this.electronics.add(new ElectronicDTO(electronic)));
     }
 
     public UUID getId() {
@@ -110,5 +128,13 @@ public class AddressDTO {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public List<PersonDTO> getPersons() {
+        return persons;
+    }
+
+    public List<ElectronicDTO> getElectronics() {
+        return electronics;
     }
 }
