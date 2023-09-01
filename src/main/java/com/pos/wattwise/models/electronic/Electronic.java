@@ -19,7 +19,9 @@ public class Electronic {
     private String name;
     private String model;
     private String power;
+
     private double energyConsumption;
+    
     @ManyToMany(mappedBy = "electronics")
     private Set<Person> persons = new HashSet<>();
 
