@@ -36,6 +36,23 @@ public class ElectronicService {
         return new ElectronicDTO(electronic);
     }
 
+    @Transactional(readOnly = true)
+    public ElectronicDTO findByName(String name) {
+        var electronic = electronicRepository.findByName(name).orElseThrow(() -> new ControllerNotFoundException("Electronic not found"));
+        return new ElectronicDTO(electronic);
+    }
+
+    @Transactional(readOnly = true)
+    public ElectronicDTO findByModel(String model) {
+        var electronic = electronicRepository.findByModel(model).orElseThrow(() -> new ControllerNotFoundException("Electronic not found"));
+        return new ElectronicDTO(electronic);
+    }
+    @Transactional(readOnly = true)
+    public ElectronicDTO findByPower(String power) {
+        var electronic = electronicRepository.findByPower(power).orElseThrow(() -> new ControllerNotFoundException("Electronic not found"));
+        return new ElectronicDTO(electronic);
+    }
+
     @Transactional
     public ElectronicDTO save(ElectronicDTO personDTO) {
         Electronic electronic = new Electronic();
@@ -67,5 +84,17 @@ public class ElectronicService {
         electronic.setModel(dto.getModel());
         electronic.setPower(dto.getPower());
         electronic.setAddress(addressRepository.getOne(dto.getAddressId()));
+        electronic.setEnergyConsumption(dto.getEnergyConsumption());
+    }
+
+    public ElectronicDTO reportUsage(UUID id, double usageTimeInHours) {
+        Electronic electronic = electronicRepository.findById(id)
+                .orElseThrow(() -> new ControllerNotFoundException("Electronic not found, id: " + id));
+
+        double energyConsumption = (Double.parseDouble(electronic.getPower()) * usageTimeInHours) / 1000;
+        System.out.printf("###############################################");
+        electronic.setEnergyConsumption(energyConsumption);
+        System.out.print(electronic.getEnergyConsumption());
+        return new ElectronicDTO(electronic);
     }
 }

@@ -33,6 +33,20 @@ public class ElectronicController {
         return ResponseEntity.ok().body(electronicService.findById(id));
     }
 
+    @GetMapping(value = "/{name}/name")
+    public ResponseEntity<ElectronicDTO> findByName(@PathVariable String name) {
+        return ResponseEntity.ok().body(electronicService.findByName(name));
+    }
+
+    @GetMapping(value = "/{model}/model")
+    public ResponseEntity<ElectronicDTO> findByModel(@PathVariable String model) {
+        return ResponseEntity.ok().body(electronicService.findByModel(model));
+    }
+    @GetMapping(value = "/{power}/power")
+    public ResponseEntity<ElectronicDTO> findByPower(@PathVariable String power) {
+        return ResponseEntity.ok().body(electronicService.findByPower(power));
+    }
+
     @PostMapping
     public ResponseEntity<ElectronicDTO> save(@RequestBody @Valid ElectronicDTO personDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(electronicService.save(personDTO));
@@ -47,5 +61,13 @@ public class ElectronicController {
     public ResponseEntity<String> delete(@PathVariable UUID id) {
         electronicService.delete(id);
         return ResponseEntity.ok().body("Electronic deleted successfully!");
+    }
+    @PutMapping(value = "/{id}/report-usage")
+    public ResponseEntity<ElectronicDTO> reportUsage (
+            @PathVariable UUID id,
+            @RequestParam double usageTimeInHours
+    ){
+        ElectronicDTO electronicDTO = electronicService.reportUsage(id, usageTimeInHours);
+        return ResponseEntity.ok().body(electronicDTO);
     }
 }

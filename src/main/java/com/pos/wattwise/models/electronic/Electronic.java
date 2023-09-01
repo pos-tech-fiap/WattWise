@@ -16,13 +16,10 @@ public class Electronic {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-
     private String name;
-
     private String model;
-
     private String power;
-
+    private double energyConsumption;
     @ManyToMany(mappedBy = "electronics")
     private Set<Person> persons = new HashSet<>();
 
@@ -33,12 +30,13 @@ public class Electronic {
     public Electronic() {
     }
 
-    public Electronic(UUID id, String name, String model, String power, Address address) {
+    public Electronic(UUID id, String name, String model, String power, Address address, double energyConsumption) {
         this.id = id;
         this.name = name;
         this.model = model;
         this.power = power;
         this.address = address;
+        this.energyConsumption = energyConsumption;
     }
 
     public UUID getId() {
@@ -84,6 +82,8 @@ public class Electronic {
     public void setAddress(Address address) {
         this.address = address;
     }
+    public double getEnergyConsumption() { return energyConsumption; }
+    public void setEnergyConsumption(double energyConsumption) { this.energyConsumption = energyConsumption; }
 
     @Override
     public boolean equals(Object o) {
