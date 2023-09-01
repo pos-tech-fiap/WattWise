@@ -13,17 +13,11 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-
     private String name;
-
     private String gender;
-
     private Date birthDate;
-
     private String email;
-
     private String phone;
-
     @Enumerated(EnumType.STRING)
     private Kinship kinship;
 

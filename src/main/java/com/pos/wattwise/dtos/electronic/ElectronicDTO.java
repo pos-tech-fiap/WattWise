@@ -21,16 +21,18 @@ public class ElectronicDTO {
 
     @NotNull
     private UUID addressId;
+    private double energyConsumption;
 
     public ElectronicDTO() {
     }
 
-    public ElectronicDTO(UUID id, String name, String model, String power, UUID addressId) {
+    public ElectronicDTO(UUID id, String name, String model, String power, UUID addressId, double energyConsumption) {
         this.id = id;
         this.name = name;
         this.model = model;
         this.power = power;
         this.addressId = addressId;
+        this.energyConsumption = energyConsumption;
     }
 
     public ElectronicDTO(Electronic electronic) {
@@ -39,6 +41,7 @@ public class ElectronicDTO {
         this.model = electronic.getModel();
         this.power = electronic.getPower();
         this.addressId = electronic.getAddress().getId();
+        this.energyConsumption = electronic.getEnergyConsumption();
     }
 
     public UUID getId() {
@@ -80,4 +83,8 @@ public class ElectronicDTO {
     public void setAddressId(UUID addressId) {
         this.addressId = addressId;
     }
+
+    public double getEnergyConsumption() { return energyConsumption; }
+
+    public void setEnergyConsumption(double energyConsumption) {this.energyConsumption = energyConsumption; }
 }
